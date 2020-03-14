@@ -7,30 +7,58 @@ import Button from './ui/Button';
 
 export default class Reels extends Sprite {
     private reels: Container
-    private realsMask: Graphics
     private config: IReelsConfig
     private spinButton: Button
 
     constructor(config: IReelsConfig) {
         super(Texture.from(Assets.REELS))
         this.config = config;
-        this.reels = this.createReels()
+
+        this.addChild(this.reels = this.createReels())
         this.reels.mask = this.createMask()
-        this.addChild(this.reels)
+
         this.addSpinButton()
     }
 
-    private addSpinButton() {
-        this.spinButton = new Button()
-        this.spinButton.anchor.set(1, 1)
-        this.spinButton.x = this.width * .985
-        this.spinButton.y = this.height * .97
-        this.spinButton.onPress(() => this.spin())
-        this.addChild(this.spinButton)
+    private createReels() {
+        const reels = new Container();
+
+        const maskSize = this.config.maskSize
+        reels.x = maskSize.offsetX
+        reels.y = maskSize.offsetY
+
+        const reelWidth = this.texture.width * maskSize.xPersentage / this.config.reelsCount
+        const reelHeight = this.texture.height * maskSize.yPersentage / this.config.slotsCount
+
+        for (let row = 0; row < this.config.reelsCount; row++) {
+            reels.addChild(this.createReel(row, reelWidth, reelHeight))
+        }
+        return reels;
     }
 
-    public spin() {
-        console.log(`spin`);
+    private createReel(row: number, reelWidth: number, reelHeight: number) {
+        const reel = new Container()
+        reel.x = row * reelWidth
+        for (let slotLine = 0; slotLine < this.config.slotsCount + 2; slotLine++) {
+            reel.addChild(this.createSlot(slotLine, reelWidth, reelHeight))
+        }
+        return reel
+    }
+
+    private createSlot(slotLine: number, slotWidth: number, slotHeight: number, slotType = this.randomSlot) {
+        const slot = new Slot({
+            type: slotType,
+            x: 0,
+            y: slotLine * slotWidth,
+            w: slotWidth,
+            h: slotHeight,
+            parameters: this.config.slots
+        })
+        return slot
+    }
+
+    private get randomSlot() {
+        return Math.floor(Math.random() * Object.keys(SlotTypes).length / 2) + 1
     }
 
     private createMask(): Graphics {
@@ -47,39 +75,18 @@ export default class Reels extends Sprite {
         return mask
     }
 
-    private createReels() {
-        const reels = new Container();
+    private addSpinButton() {
+        this.spinButton = new Button()
+        this.spinButton.anchor.set(1, 1)
+        this.spinButton.x = this.width * .985
+        this.spinButton.y = this.height * .97
+        this.addChild(this.spinButton)
 
-        const maskSize = this.config.maskSize
-        reels.x = maskSize.offsetX
-        reels.y = maskSize.offsetY
-        console.log();
-
-        // TODO: absract reels
-        for (let x = 0; x < this.config.reelsCount; x++) {
-            const reel = new Container()
-            const slotWidth = this.texture.width * maskSize.xPersentage / this.config.reelsCount
-            const slotHeight = this.texture.height * maskSize.yPersentage / this.config.slotsCount
-            reel.x = x * slotWidth
-            for (let y = 0; y < this.config.slotsCount; y++) {
-                const slotType = this.rundomSlot;
-                const slot = new Slot({
-                    type: slotType,
-                    x: 0,
-                    y: y * slotHeight,
-                    w: slotWidth,
-                    h: slotHeight,
-                    parameters: this.config.slots
-                })
-                reel.addChild(slot)
-            }
-            reels.addChild(reel)
-        }
-        return reels;
+        this.spinButton.onPress(() => this.spin())
     }
 
-    private get rundomSlot() {
-        return Math.floor(Math.random() * Object.keys(SlotTypes).length / 2) + 1
+    public spin() {
+        console.log(`spin`);
     }
 
     public resize(width: number, height: number) {

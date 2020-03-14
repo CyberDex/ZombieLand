@@ -1,5 +1,5 @@
-import { Application } from "pixi.js"
 import * as PIXI from "pixi.js"
+import { Application } from "pixi.js"
 import Background from './components/ui/Background'
 import Logo from "./components/ui/Logo";
 import Reels from './components/Reels'
@@ -50,6 +50,5 @@ class Game extends Application {
 }
 
 const game = new Game()
-game.init()
-    .then(() => document.body.appendChild(game.view))
-window.PIXI = PIXI;
+game.init().then(() => document.body.appendChild(game.view))
+window.PIXI = PIXI; // for Pixi devtools
