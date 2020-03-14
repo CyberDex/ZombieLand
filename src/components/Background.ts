@@ -2,8 +2,7 @@ import { Sprite, Texture } from "pixi.js"
 
 export default class Background extends Sprite {
     constructor(image: string) {
-        super(Texture.EMPTY)
-        this.texture = Texture.from(image)
+        super(Texture.from(image))
         this.anchor.set(0.5)
     }
 

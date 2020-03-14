@@ -1,0 +1,17 @@
+{
+    "preload": {
+        "bg": "assets/bg.png",
+        "reels": "assets/reels.png",
+        "logo": "assets/logo.png",
+        "branch": "assets/branch.png"
+    },
+    "reels": {
+        "bg": "reels",
+        "reelsCount": 5,
+        "slotsCount": 3,
+        "preload": {
+            "filesCount": 8,
+            "urlTemplate": "assets/slots/slots-{fileID}.json"
+        }
+    }
+}

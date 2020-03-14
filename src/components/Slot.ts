@@ -13,15 +13,18 @@ export default class Slot extends Container {
         }
         this.animation = new AnimatedSprite(animTextures);
         this.addChild(this.animation)
-        this.animation.anchor.set(0.5)
     }
 
     public play() {
         this.animation.play();
     }
 
-    public resize(width: number) {
-        this.width = width * .17
-        this.height = this.texture.height * width / this.texture.width * .17
+    public resize(width: number, position: number) {
+        this.width = width * .1735
+        this.height = this.texture.height * width / this.texture.width * .1735
+
+        // mask
+        const maskWidth = width * .9149
+        this.x = maskWidth / 5
     }
 }
