@@ -19,4 +19,7 @@ export interface IReelsConfig {
         offsetX: number;
         offsetY: number;
     }
+    framesCount: {
+        [key: number]: number;
+    }
 }

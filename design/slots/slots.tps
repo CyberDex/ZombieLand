@@ -132,7 +132,7 @@
             <key>data</key>
             <struct type="DataFile">
                 <key>name</key>
-                <filename>../../assets/slots-{n}.json</filename>
+                <filename>../../assets/slots/slots-{n}.json</filename>
             </struct>
         </map>
         <key>multiPack</key>
@@ -159,7 +159,7 @@
         <key>globalSpriteSettings</key>
         <struct type="SpriteSettings">
             <key>scale</key>
-            <double>0.5</double>
+            <double>0.2</double>
             <key>scaleMode</key>
             <enum type="ScaleMode">Smooth</enum>
             <key>extrude</key>
@@ -232,6 +232,227 @@
                 <rect>148,178,295,355</rect>
                 <key>scale9Paddings</key>
                 <rect>148,178,295,355</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">10/1.png</key>
+            <key type="filename">10/10.png</key>
+            <key type="filename">10/11.png</key>
+            <key type="filename">10/12.png</key>
+            <key type="filename">10/13.png</key>
+            <key type="filename">10/14.png</key>
+            <key type="filename">10/15.png</key>
+            <key type="filename">10/16.png</key>
+            <key type="filename">10/17.png</key>
+            <key type="filename">10/18.png</key>
+            <key type="filename">10/19.png</key>
+            <key type="filename">10/2.png</key>
+            <key type="filename">10/20.png</key>
+            <key type="filename">10/21.png</key>
+            <key type="filename">10/22.png</key>
+            <key type="filename">10/23.png</key>
+            <key type="filename">10/24.png</key>
+            <key type="filename">10/25.png</key>
+            <key type="filename">10/26.png</key>
+            <key type="filename">10/27.png</key>
+            <key type="filename">10/28.png</key>
+            <key type="filename">10/29.png</key>
+            <key type="filename">10/3.png</key>
+            <key type="filename">10/30.png</key>
+            <key type="filename">10/31.png</key>
+            <key type="filename">10/32.png</key>
+            <key type="filename">10/33.png</key>
+            <key type="filename">10/34.png</key>
+            <key type="filename">10/35.png</key>
+            <key type="filename">10/4.png</key>
+            <key type="filename">10/5.png</key>
+            <key type="filename">10/6.png</key>
+            <key type="filename">10/7.png</key>
+            <key type="filename">10/8.png</key>
+            <key type="filename">10/9.png</key>
+            <key type="filename">11/1.png</key>
+            <key type="filename">11/10.png</key>
+            <key type="filename">11/11.png</key>
+            <key type="filename">11/12.png</key>
+            <key type="filename">11/13.png</key>
+            <key type="filename">11/14.png</key>
+            <key type="filename">11/15.png</key>
+            <key type="filename">11/16.png</key>
+            <key type="filename">11/17.png</key>
+            <key type="filename">11/18.png</key>
+            <key type="filename">11/19.png</key>
+            <key type="filename">11/2.png</key>
+            <key type="filename">11/20.png</key>
+            <key type="filename">11/21.png</key>
+            <key type="filename">11/22.png</key>
+            <key type="filename">11/23.png</key>
+            <key type="filename">11/24.png</key>
+            <key type="filename">11/25.png</key>
+            <key type="filename">11/26.png</key>
+            <key type="filename">11/27.png</key>
+            <key type="filename">11/28.png</key>
+            <key type="filename">11/29.png</key>
+            <key type="filename">11/3.png</key>
+            <key type="filename">11/30.png</key>
+            <key type="filename">11/31.png</key>
+            <key type="filename">11/32.png</key>
+            <key type="filename">11/33.png</key>
+            <key type="filename">11/34.png</key>
+            <key type="filename">11/35.png</key>
+            <key type="filename">11/36.png</key>
+            <key type="filename">11/37.png</key>
+            <key type="filename">11/38.png</key>
+            <key type="filename">11/39.png</key>
+            <key type="filename">11/4.png</key>
+            <key type="filename">11/40.png</key>
+            <key type="filename">11/41.png</key>
+            <key type="filename">11/42.png</key>
+            <key type="filename">11/43.png</key>
+            <key type="filename">11/44.png</key>
+            <key type="filename">11/45.png</key>
+            <key type="filename">11/46.png</key>
+            <key type="filename">11/47.png</key>
+            <key type="filename">11/48.png</key>
+            <key type="filename">11/49.png</key>
+            <key type="filename">11/5.png</key>
+            <key type="filename">11/50.png</key>
+            <key type="filename">11/51.png</key>
+            <key type="filename">11/52.png</key>
+            <key type="filename">11/53.png</key>
+            <key type="filename">11/54.png</key>
+            <key type="filename">11/55.png</key>
+            <key type="filename">11/56.png</key>
+            <key type="filename">11/57.png</key>
+            <key type="filename">11/58.png</key>
+            <key type="filename">11/59.png</key>
+            <key type="filename">11/6.png</key>
+            <key type="filename">11/60.png</key>
+            <key type="filename">11/61.png</key>
+            <key type="filename">11/62.png</key>
+            <key type="filename">11/63.png</key>
+            <key type="filename">11/64.png</key>
+            <key type="filename">11/7.png</key>
+            <key type="filename">11/8.png</key>
+            <key type="filename">11/9.png</key>
+            <key type="filename">5/31.png</key>
+            <key type="filename">5/32.png</key>
+            <key type="filename">5/33.png</key>
+            <key type="filename">5/34.png</key>
+            <key type="filename">5/35.png</key>
+            <key type="filename">5/36.png</key>
+            <key type="filename">5/37.png</key>
+            <key type="filename">5/38.png</key>
+            <key type="filename">5/39.png</key>
+            <key type="filename">5/40.png</key>
+            <key type="filename">5/41.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0,0</point_f>
+                <key>spriteScale</key>
+                <double>1</double>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>148,149,295,297</rect>
+                <key>scale9Paddings</key>
+                <rect>148,149,295,297</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">12/1.png</key>
+            <key type="filename">12/10.png</key>
+            <key type="filename">12/11.png</key>
+            <key type="filename">12/12.png</key>
+            <key type="filename">12/13.png</key>
+            <key type="filename">12/14.png</key>
+            <key type="filename">12/15.png</key>
+            <key type="filename">12/16.png</key>
+            <key type="filename">12/17.png</key>
+            <key type="filename">12/18.png</key>
+            <key type="filename">12/19.png</key>
+            <key type="filename">12/2.png</key>
+            <key type="filename">12/20.png</key>
+            <key type="filename">12/21.png</key>
+            <key type="filename">12/22.png</key>
+            <key type="filename">12/23.png</key>
+            <key type="filename">12/24.png</key>
+            <key type="filename">12/25.png</key>
+            <key type="filename">12/26.png</key>
+            <key type="filename">12/27.png</key>
+            <key type="filename">12/28.png</key>
+            <key type="filename">12/29.png</key>
+            <key type="filename">12/3.png</key>
+            <key type="filename">12/30.png</key>
+            <key type="filename">12/31.png</key>
+            <key type="filename">12/32.png</key>
+            <key type="filename">12/33.png</key>
+            <key type="filename">12/34.png</key>
+            <key type="filename">12/35.png</key>
+            <key type="filename">12/36.png</key>
+            <key type="filename">12/37.png</key>
+            <key type="filename">12/4.png</key>
+            <key type="filename">12/5.png</key>
+            <key type="filename">12/6.png</key>
+            <key type="filename">12/7.png</key>
+            <key type="filename">12/8.png</key>
+            <key type="filename">12/9.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0,0</point_f>
+                <key>spriteScale</key>
+                <double>1</double>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>173,170,345,340</rect>
+                <key>scale9Paddings</key>
+                <rect>173,170,345,340</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">13/1.png</key>
+            <key type="filename">13/10.png</key>
+            <key type="filename">13/11.png</key>
+            <key type="filename">13/12.png</key>
+            <key type="filename">13/13.png</key>
+            <key type="filename">13/14.png</key>
+            <key type="filename">13/15.png</key>
+            <key type="filename">13/16.png</key>
+            <key type="filename">13/17.png</key>
+            <key type="filename">13/18.png</key>
+            <key type="filename">13/19.png</key>
+            <key type="filename">13/2.png</key>
+            <key type="filename">13/20.png</key>
+            <key type="filename">13/21.png</key>
+            <key type="filename">13/22.png</key>
+            <key type="filename">13/23.png</key>
+            <key type="filename">13/24.png</key>
+            <key type="filename">13/25.png</key>
+            <key type="filename">13/26.png</key>
+            <key type="filename">13/27.png</key>
+            <key type="filename">13/28.png</key>
+            <key type="filename">13/29.png</key>
+            <key type="filename">13/3.png</key>
+            <key type="filename">13/30.png</key>
+            <key type="filename">13/31.png</key>
+            <key type="filename">13/32.png</key>
+            <key type="filename">13/4.png</key>
+            <key type="filename">13/5.png</key>
+            <key type="filename">13/6.png</key>
+            <key type="filename">13/7.png</key>
+            <key type="filename">13/8.png</key>
+            <key type="filename">13/9.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0,0</point_f>
+                <key>spriteScale</key>
+                <double>1</double>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>173,149,345,297</rect>
+                <key>scale9Paddings</key>
+                <rect>173,149,345,297</rect>
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
@@ -451,11 +672,6 @@
             <key type="filename">6/29.png</key>
             <key type="filename">6/3.png</key>
             <key type="filename">6/30.png</key>
-            <key type="filename">6/31.png</key>
-            <key type="filename">6/32.png</key>
-            <key type="filename">6/33.png</key>
-            <key type="filename">6/34.png</key>
-            <key type="filename">6/35.png</key>
             <key type="filename">6/4.png</key>
             <key type="filename">6/5.png</key>
             <key type="filename">6/6.png</key>
@@ -491,13 +707,7 @@
             <key type="filename">7/33.png</key>
             <key type="filename">7/34.png</key>
             <key type="filename">7/35.png</key>
-            <key type="filename">7/36.png</key>
-            <key type="filename">7/37.png</key>
-            <key type="filename">7/38.png</key>
-            <key type="filename">7/39.png</key>
             <key type="filename">7/4.png</key>
-            <key type="filename">7/40.png</key>
-            <key type="filename">7/41.png</key>
             <key type="filename">7/5.png</key>
             <key type="filename">7/6.png</key>
             <key type="filename">7/7.png</key>
@@ -544,6 +754,55 @@
                 <rect>148,149,295,297</rect>
                 <key>scale9Paddings</key>
                 <rect>148,149,295,297</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">9/1.png</key>
+            <key type="filename">9/10.png</key>
+            <key type="filename">9/11.png</key>
+            <key type="filename">9/12.png</key>
+            <key type="filename">9/13.png</key>
+            <key type="filename">9/14.png</key>
+            <key type="filename">9/15.png</key>
+            <key type="filename">9/16.png</key>
+            <key type="filename">9/17.png</key>
+            <key type="filename">9/18.png</key>
+            <key type="filename">9/19.png</key>
+            <key type="filename">9/2.png</key>
+            <key type="filename">9/20.png</key>
+            <key type="filename">9/21.png</key>
+            <key type="filename">9/22.png</key>
+            <key type="filename">9/23.png</key>
+            <key type="filename">9/24.png</key>
+            <key type="filename">9/25.png</key>
+            <key type="filename">9/26.png</key>
+            <key type="filename">9/27.png</key>
+            <key type="filename">9/28.png</key>
+            <key type="filename">9/29.png</key>
+            <key type="filename">9/3.png</key>
+            <key type="filename">9/30.png</key>
+            <key type="filename">9/31.png</key>
+            <key type="filename">9/32.png</key>
+            <key type="filename">9/33.png</key>
+            <key type="filename">9/34.png</key>
+            <key type="filename">9/35.png</key>
+            <key type="filename">9/4.png</key>
+            <key type="filename">9/5.png</key>
+            <key type="filename">9/6.png</key>
+            <key type="filename">9/7.png</key>
+            <key type="filename">9/8.png</key>
+            <key type="filename">9/9.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0,0</point_f>
+                <key>spriteScale</key>
+                <double>1</double>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>160,180,320,360</rect>
+                <key>scale9Paddings</key>
+                <rect>160,180,320,360</rect>
                 <key>scale9FromFile</key>
                 <false/>
             </struct>

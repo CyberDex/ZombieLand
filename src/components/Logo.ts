@@ -11,7 +11,7 @@ export default class Logo extends Sprite {
         this.width = this.texture.width * this.height / this.texture.height
 
         this.position.x = width / 2
-        this.position.y = height / 10
+        this.position.y = height / 12
 
         if (this.width > width * .95) {
             this.width = width * .95
