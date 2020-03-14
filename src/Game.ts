@@ -1,10 +1,14 @@
-import { Application } from '@pixi/app'
+import { Application } from "pixi.js"
 
 import Background from './components/Background'
 import Reels from './components/Reels'
 
-export default class App extends Application {
-    constructor(config) {
+class Game extends Application {
+
+    private background: Background;
+    private reels: Reels;
+
+    constructor(config?: {}) {
         super(config)
         document.body.appendChild(this.view)
         window.addEventListener('resize', this.onResize.bind(this))
@@ -27,7 +31,7 @@ export default class App extends Application {
         this.ticker.add(this.onUpdate.bind(this))
     }
 
-    onUpdate(delta) {
+    onUpdate(delta: number) {
         // this.ground.onUpdate(delta)
         // this.clouds.onUpdate(delta)
     }
@@ -40,3 +44,4 @@ export default class App extends Application {
         this.reels.resize(width, height)
     }
 }
+new Game()

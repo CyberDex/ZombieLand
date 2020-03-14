@@ -1,14 +1,13 @@
-import { Texture } from '@pixi/core'
-import { Sprite } from '@pixi/sprite'
+import { Sprite, Texture } from "pixi.js"
 
 export default class Background extends Sprite {
-    constructor(image) {
+    constructor(image: string) {
         super(Texture.EMPTY)
         this.texture = Texture.from(image)
         this.anchor.set(0.5)
     }
 
-    resize(width, height) {
+    resize(width: number, height: number) {
         this.position.x = width / 2
         this.position.y = height / 2
 
