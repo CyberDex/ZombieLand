@@ -132,7 +132,7 @@
             <key>data</key>
             <struct type="DataFile">
                 <key>name</key>
-                <filename>slots-{n}.json</filename>
+                <filename>../../assets/slots-{n}.json</filename>
             </struct>
         </map>
         <key>multiPack</key>
@@ -151,7 +151,7 @@
         <key>autoAliasEnabled</key>
         <true/>
         <key>trimSpriteNames</key>
-        <false/>
+        <true/>
         <key>prependSmartFolderName</key>
         <true/>
         <key>autodetectAnimations</key>
