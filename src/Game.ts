@@ -1,4 +1,5 @@
 import { Application } from "pixi.js"
+import * as PIXI from "pixi.js"
 import Background from './components/Background'
 import Reels from './components/Reels'
 
@@ -8,19 +9,16 @@ class Game extends Application {
 
     constructor() {
         super()
-        document.body.appendChild(this.view)
         window.addEventListener('resize', this.onResize.bind(this))
-        this.init()
+
+        this.loader
+            .add('bg', './assets/bg.png')
+            .add('reels', './assets/reels.png')
+            .add('slots', './assets/slots-0.json')
+            .load(() => this.draw())
     }
 
-    init() {
-        this.loader.add('bg', './assets/bg.png')
-        this.loader.add('reels', './assets/reels.png')
-        this.loader.add('slots', './assets/slots-0.json')
-        this.loader.load(() => this.draw())
-    }
-
-    draw() {
+    private draw() {
         this.stage.addChild(
             this.background = new Background('bg'),
             this.reels = new Reels('reels')
@@ -29,12 +27,12 @@ class Game extends Application {
         this.ticker.add(this.onUpdate.bind(this))
     }
 
-    onUpdate(delta: number) {
+    private onUpdate(delta: number) {
         // this.ground.onUpdate(delta)
         // this.clouds.onUpdate(delta)
     }
 
-    onResize() {
+    private onResize() {
         this.renderer.resize(window.innerWidth + 2, window.innerHeight + 2)
         const width = this.renderer.width
         const height = this.renderer.height
@@ -43,3 +41,4 @@ class Game extends Application {
     }
 }
 document.body.appendChild(new Game().view);
+window.PIXI = PIXI;
