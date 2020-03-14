@@ -1,12 +1,14 @@
 export default interface IConfig {
     reels?: IReelsConfig,
-    globalAssets?: {
-        [key: string]: string;
-    }
+    ui?: IUI
+}
+
+export interface IUI {
+    assets: string[];
 }
 
 export interface IReelsConfig {
-    bg: string;
+    assets: string[];
     reelsCount: number;
     slotsCount: number;
     slotsAssets?: {

@@ -2544,11 +2544,11 @@
 "meta": {
 	"app": "https://www.codeandweb.com/texturepacker",
 	"version": "1.0",
-	"image": "slots-0.png",
+	"image": "0.png",
 	"format": "RGBA8888",
 	"size": {"w":2037,"h":2032},
 	"scale": "0.2",
-	"related_multi_packs": [ "slots-1.json" ],
-	"smartupdate": "$TexturePacker:SmartUpdate:0a99a6f69d9282afa4d72fa29d19e75f:64d7e68fd447a65db8845583811ef658:02fa1d5c14dc3b582487cc3cfb05c4ba$"
+	"related_multi_packs": [ "1.json" ],
+	"smartupdate": "$TexturePacker:SmartUpdate:a536cf68154af5045c59be540947df4e:64d7e68fd447a65db8845583811ef658:aff8d33e5df1ba4dda7fefc2eef08b0a$"
 }
 }

@@ -4,6 +4,7 @@ import Background from './components/Background'
 import Reels from './components/Reels'
 import Logo from "./components/Logo";
 import IConfig from "./interfaces/IConfig";
+import { Assets } from './enums/Assets';
 
 class Game extends Application {
     private config: IConfig;
@@ -27,22 +28,17 @@ class Game extends Application {
 
     private loadAssets(): Promise<any> {
         return new Promise(resolve => {
-            for (const asset in this.config?.globalAssets) {
-                this.loader.add(asset, this.config.globalAssets[asset])
-            }
-            const reelsPreload = this.config?.reels?.slotsAssets;
-            for (let i = 0; i < reelsPreload?.filesCount; i++) {
-                this.loader.add(reelsPreload.urlTemplate.replace("{fileID}", String(i)))
-            }
+            this.config?.ui?.assets.forEach(asset => this.loader.add(asset));
+            this.config?.reels?.assets.forEach(asset => this.loader.add(asset));
             this.loader.load(resolve)
         })
     }
 
     private renderElements() {
         this.stage.addChild(
-            new Background('bg'),
+            new Background(Assets.BG),
             new Reels(this.config.reels),
-            new Logo('logo'),
+            new Logo(Assets.LOGO),
         )
         this.onResize()
     }

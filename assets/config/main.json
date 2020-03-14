@@ -1,18 +1,17 @@
 {
-    "globalAssets": {
-        "bg": "assets/bg.png",
-        "reels": "assets/reels.png",
-        "logo": "assets/logo.png",
-        "branch": "assets/branch.png"
+    "ui": {
+        "assets": [
+            "assets/ui/0.json",
+            "assets/ui/1.json"
+        ]
     },
     "reels": {
-        "bg": "reels",
+        "assets": [
+            "assets/slots/0.json",
+            "assets/slots/1.json"
+        ],
         "reelsCount": 5,
         "slotsCount": 3,
-        "slotsAssets": {
-            "filesCount": 8,
-            "urlTemplate": "assets/slots/slots-{fileID}.json"
-        },
         "maskSize": {
             "xPersentage": 0.915,
             "yPersentage": 0.75,

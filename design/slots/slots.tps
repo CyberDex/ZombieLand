@@ -132,7 +132,7 @@
             <key>data</key>
             <struct type="DataFile">
                 <key>name</key>
-                <filename>../../assets/slots/slots-{n}.json</filename>
+                <filename>../../assets/slots/{n}.json</filename>
             </struct>
         </map>
         <key>multiPack</key>
@@ -182,66 +182,18 @@
         <key>individualSpriteSettings</key>
         <map type="IndividualSpriteSettingsMap">
             <key type="filename">1.png</key>
-            <key type="filename">anim/1/1.png</key>
-            <key type="filename">anim/1/10.png</key>
-            <key type="filename">anim/1/11.png</key>
-            <key type="filename">anim/1/12.png</key>
-            <key type="filename">anim/1/13.png</key>
-            <key type="filename">anim/1/14.png</key>
-            <key type="filename">anim/1/15.png</key>
-            <key type="filename">anim/1/16.png</key>
-            <key type="filename">anim/1/17.png</key>
-            <key type="filename">anim/1/18.png</key>
-            <key type="filename">anim/1/19.png</key>
-            <key type="filename">anim/1/2.png</key>
-            <key type="filename">anim/1/20.png</key>
-            <key type="filename">anim/1/21.png</key>
-            <key type="filename">anim/1/22.png</key>
-            <key type="filename">anim/1/23.png</key>
-            <key type="filename">anim/1/24.png</key>
-            <key type="filename">anim/1/25.png</key>
-            <key type="filename">anim/1/26.png</key>
-            <key type="filename">anim/1/27.png</key>
-            <key type="filename">anim/1/28.png</key>
-            <key type="filename">anim/1/29.png</key>
-            <key type="filename">anim/1/3.png</key>
-            <key type="filename">anim/1/30.png</key>
-            <key type="filename">anim/1/31.png</key>
-            <key type="filename">anim/1/32.png</key>
-            <key type="filename">anim/1/33.png</key>
-            <key type="filename">anim/1/34.png</key>
-            <key type="filename">anim/1/35.png</key>
-            <key type="filename">anim/1/36.png</key>
-            <key type="filename">anim/1/37.png</key>
-            <key type="filename">anim/1/38.png</key>
-            <key type="filename">anim/1/39.png</key>
-            <key type="filename">anim/1/4.png</key>
-            <key type="filename">anim/1/40.png</key>
-            <key type="filename">anim/1/5.png</key>
-            <key type="filename">anim/1/6.png</key>
-            <key type="filename">anim/1/7.png</key>
-            <key type="filename">anim/1/8.png</key>
-            <key type="filename">anim/1/9.png</key>
-            <struct type="IndividualSpriteSettings">
-                <key>pivotPoint</key>
-                <point_f>0,0</point_f>
-                <key>spriteScale</key>
-                <double>1</double>
-                <key>scale9Enabled</key>
-                <false/>
-                <key>scale9Borders</key>
-                <rect>148,178,295,355</rect>
-                <key>scale9Paddings</key>
-                <rect>148,178,295,355</rect>
-                <key>scale9FromFile</key>
-                <false/>
-            </struct>
             <key type="filename">10.png</key>
             <key type="filename">11.png</key>
+            <key type="filename">12.png</key>
+            <key type="filename">13.png</key>
+            <key type="filename">2.png</key>
+            <key type="filename">3.png</key>
+            <key type="filename">4.png</key>
             <key type="filename">5.png</key>
             <key type="filename">6.png</key>
             <key type="filename">7.png</key>
             <key type="filename">8.png</key>
+            <key type="filename">9.png</key>
             <key type="filename">anim/10/1.png</key>
             <key type="filename">anim/10/10.png</key>
             <key type="filename">anim/10/11.png</key>
@@ -491,7 +443,60 @@
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
-            <key type="filename">12.png</key>
+            <key type="filename">anim/1/1.png</key>
+            <key type="filename">anim/1/10.png</key>
+            <key type="filename">anim/1/11.png</key>
+            <key type="filename">anim/1/12.png</key>
+            <key type="filename">anim/1/13.png</key>
+            <key type="filename">anim/1/14.png</key>
+            <key type="filename">anim/1/15.png</key>
+            <key type="filename">anim/1/16.png</key>
+            <key type="filename">anim/1/17.png</key>
+            <key type="filename">anim/1/18.png</key>
+            <key type="filename">anim/1/19.png</key>
+            <key type="filename">anim/1/2.png</key>
+            <key type="filename">anim/1/20.png</key>
+            <key type="filename">anim/1/21.png</key>
+            <key type="filename">anim/1/22.png</key>
+            <key type="filename">anim/1/23.png</key>
+            <key type="filename">anim/1/24.png</key>
+            <key type="filename">anim/1/25.png</key>
+            <key type="filename">anim/1/26.png</key>
+            <key type="filename">anim/1/27.png</key>
+            <key type="filename">anim/1/28.png</key>
+            <key type="filename">anim/1/29.png</key>
+            <key type="filename">anim/1/3.png</key>
+            <key type="filename">anim/1/30.png</key>
+            <key type="filename">anim/1/31.png</key>
+            <key type="filename">anim/1/32.png</key>
+            <key type="filename">anim/1/33.png</key>
+            <key type="filename">anim/1/34.png</key>
+            <key type="filename">anim/1/35.png</key>
+            <key type="filename">anim/1/36.png</key>
+            <key type="filename">anim/1/37.png</key>
+            <key type="filename">anim/1/38.png</key>
+            <key type="filename">anim/1/39.png</key>
+            <key type="filename">anim/1/4.png</key>
+            <key type="filename">anim/1/40.png</key>
+            <key type="filename">anim/1/5.png</key>
+            <key type="filename">anim/1/6.png</key>
+            <key type="filename">anim/1/7.png</key>
+            <key type="filename">anim/1/8.png</key>
+            <key type="filename">anim/1/9.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0,0</point_f>
+                <key>spriteScale</key>
+                <double>1</double>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>148,178,295,355</rect>
+                <key>scale9Paddings</key>
+                <rect>148,178,295,355</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
             <key type="filename">anim/12/1.png</key>
             <key type="filename">anim/12/10.png</key>
             <key type="filename">anim/12/11.png</key>
@@ -543,7 +548,6 @@
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
-            <key type="filename">13.png</key>
             <key type="filename">anim/13/1.png</key>
             <key type="filename">anim/13/10.png</key>
             <key type="filename">anim/13/11.png</key>
@@ -590,7 +594,6 @@
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
-            <key type="filename">2.png</key>
             <key type="filename">anim/2/1.png</key>
             <key type="filename">anim/2/10.png</key>
             <key type="filename">anim/2/11.png</key>
@@ -645,7 +648,6 @@
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
-            <key type="filename">3.png</key>
             <key type="filename">anim/3/1.png</key>
             <key type="filename">anim/3/10.png</key>
             <key type="filename">anim/3/11.png</key>
@@ -700,7 +702,6 @@
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
-            <key type="filename">4.png</key>
             <key type="filename">anim/4/1.png</key>
             <key type="filename">anim/4/10.png</key>
             <key type="filename">anim/4/11.png</key>
@@ -755,7 +756,6 @@
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
-            <key type="filename">9.png</key>
             <key type="filename">anim/9/1.png</key>
             <key type="filename">anim/9/10.png</key>
             <key type="filename">anim/9/11.png</key>
@@ -808,6 +808,7 @@
         </map>
         <key>fileList</key>
         <array>
+            <filename>.</filename>
             <filename>.</filename>
         </array>
         <key>ignoreFileList</key>

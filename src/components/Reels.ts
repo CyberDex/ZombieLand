@@ -2,6 +2,7 @@ import { Sprite, Texture, Container, Graphics } from "pixi.js"
 import { IReelsConfig } from "../interfaces/IConfig";
 import Slot from './Slot'
 import { SlotTypes } from '../enums/SlotTypes';
+import { Assets } from "../enums/Assets";
 
 export default class Reels extends Sprite {
     private reels: Container;
@@ -9,7 +10,7 @@ export default class Reels extends Sprite {
     private config: IReelsConfig;
 
     constructor(config: IReelsConfig) {
-        super(Texture.from(config.bg))
+        super(Texture.from(Assets.REELS))
         this.config = config;
         this.reels = this.createReels()
         this.reels.mask = this.createMask()
