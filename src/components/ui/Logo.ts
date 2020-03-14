@@ -1,8 +1,8 @@
 import { Sprite, Texture } from "pixi.js"
 
 export default class Logo extends Sprite {
-    constructor(bg: string) {
-        super(Texture.from(bg))
+    constructor(image: string) {
+        super(Texture.from(image))
         this.anchor.set(.5)
     }
 

@@ -1,8 +1,8 @@
 import { Application } from "pixi.js"
 import * as PIXI from "pixi.js"
-import Background from './components/Background'
+import Background from './components/ui/Background'
+import Logo from "./components/ui/Logo";
 import Reels from './components/Reels'
-import Logo from "./components/Logo";
 import IConfig from "./interfaces/IConfig";
 import { Assets } from './enums/Assets';
 
@@ -37,8 +37,8 @@ class Game extends Application {
     private renderElements() {
         this.stage.addChild(
             new Background(Assets.BG),
-            new Reels(this.config.reels),
             new Logo(Assets.LOGO),
+            new Reels(this.config.reels)
         )
         this.onResize()
     }

@@ -16,7 +16,7 @@
 	"spriteSourceSize": {"x":0,"y":0,"w":527,"h":221},
 	"sourceSize": {"w":527,"h":221}
 },
-"ui/buttons/spin/hover":
+"ui/buttons/spin/disabled":
 {
 	"frame": {"x":527,"y":1080,"w":527,"h":221},
 	"rotated": false,
@@ -24,9 +24,25 @@
 	"spriteSourceSize": {"x":0,"y":0,"w":527,"h":221},
 	"sourceSize": {"w":527,"h":221}
 },
+"ui/buttons/spin/hover":
+{
+	"frame": {"x":1054,"y":1080,"w":527,"h":221},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":527,"h":221},
+	"sourceSize": {"w":527,"h":221}
+},
+"ui/buttons/spin/pressed":
+{
+	"frame": {"x":0,"y":1301,"w":527,"h":221},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":527,"h":221},
+	"sourceSize": {"w":527,"h":221}
+},
 "ui/logo":
 {
-	"frame": {"x":0,"y":1301,"w":1607,"h":219},
+	"frame": {"x":0,"y":1522,"w":1607,"h":219},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":1607,"h":219},
@@ -37,9 +53,9 @@
 	"version": "1.0",
 	"image": "0.png",
 	"format": "RGBA8888",
-	"size": {"w":1920,"h":1520},
+	"size": {"w":1920,"h":1741},
 	"scale": "1",
 	"related_multi_packs": [ "1.json" ],
-	"smartupdate": "$TexturePacker:SmartUpdate:1787714a67e0fe67acb4301ec684d761:db1bf35fd5541133a0758528c6d0c514:aff8d33e5df1ba4dda7fefc2eef08b0a$"
+	"smartupdate": "$TexturePacker:SmartUpdate:e6e4150b6a8b0538ec2d6d2d3a3aeebb:aa2392c225161b2e8b40e859dd581f2b:aff8d33e5df1ba4dda7fefc2eef08b0a$"
 }
 }

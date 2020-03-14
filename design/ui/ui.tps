@@ -212,6 +212,22 @@
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
+            <key type="filename">buttons/spin/disabled.png</key>
+            <key type="filename">buttons/spin/pressed.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0,0</point_f>
+                <key>spriteScale</key>
+                <double>1</double>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>132,55,263,111</rect>
+                <key>scale9Paddings</key>
+                <rect>132,55,263,111</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
             <key type="filename">logo.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>

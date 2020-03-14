@@ -3,11 +3,13 @@ import { IReelsConfig } from "../interfaces/IConfig";
 import Slot from './Slot'
 import { SlotTypes } from '../enums/SlotTypes';
 import { Assets } from "../enums/Assets";
+import Button from './ui/Button';
 
 export default class Reels extends Sprite {
-    private reels: Container;
-    private realsMask: Graphics;
-    private config: IReelsConfig;
+    private reels: Container
+    private realsMask: Graphics
+    private config: IReelsConfig
+    private spinButton: Button
 
     constructor(config: IReelsConfig) {
         super(Texture.from(Assets.REELS))
@@ -15,6 +17,20 @@ export default class Reels extends Sprite {
         this.reels = this.createReels()
         this.reels.mask = this.createMask()
         this.addChild(this.reels)
+        this.addSpinButton()
+    }
+
+    private addSpinButton() {
+        this.spinButton = new Button()
+        this.spinButton.anchor.set(1, 1)
+        this.spinButton.x = this.width * .985
+        this.spinButton.y = this.height * .97
+        this.spinButton.onPress(() => this.spin())
+        this.addChild(this.spinButton)
+    }
+
+    public spin() {
+        console.log(`spin`);
     }
 
     private createMask(): Graphics {
@@ -39,6 +55,7 @@ export default class Reels extends Sprite {
         reels.y = maskSize.offsetY
         console.log();
 
+        // TODO: absract reels
         for (let x = 0; x < this.config.reelsCount; x++) {
             const reel = new Container()
             const slotWidth = this.texture.width * maskSize.xPersentage / this.config.reelsCount
