@@ -12,5 +12,11 @@ export interface IReelsConfig {
     slotsAssets?: {
         filesCount: number;
         urlTemplate: string;
+    },
+    maskSize: {
+        xPersentage: number;
+        yPersentage: number;
+        offsetX: number;
+        offsetY: number;
     }
 }

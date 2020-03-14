@@ -1,12 +1,17 @@
-import { Sprite, Texture, Container } from "pixi.js"
+import { Sprite, Texture, Container, Graphics } from "pixi.js"
 import { IReelsConfig } from "../interfaces/IConfig";
 import Slot from './Slot'
 
 export default class Reels extends Sprite {
     private reals: Container;
+    private realsMask: Graphics;
+    private config: IReelsConfig;
 
     constructor(config: IReelsConfig) {
         super(Texture.from(config.bg))
+        this.config = config;
+
+        this.realsMask = this.createMask(0, 0, this.texture.width, this.texture.height)
 
         this.reals = new Container();
 
@@ -14,10 +19,20 @@ export default class Reels extends Sprite {
             const reel = new Container()
             for (let i = 0; i < config.slotsCount; i++) {
                 const slot = new Slot("5", 30)
+                // slot.mask = this.realsMask
                 reel.addChild(slot)
             }
             this.reals.addChild(reel)
         }
+    }
+
+    private createMask(x: number, y: number, w: number, h: number): Graphics {
+        const realsMask = new Graphics();
+        realsMask.beginFill(0x000000);
+        realsMask.drawRect(x, y, w, h);
+        realsMask.endFill();
+        // this.addChild(realsMask)
+        return realsMask
     }
 
     public resize(width: number, height: number) {
@@ -34,5 +49,12 @@ export default class Reels extends Sprite {
             this.position.x = (width - this.width) / 2
             this.position.y = (height - this.height) / 1.6
         }
+
+        const maskSize = this.config.maskSize
+        this.realsMask.width = this.texture.width * maskSize.xPersentage
+        this.realsMask.height = this.texture.height * maskSize.yPersentage
+
+        this.realsMask.x = maskSize.offsetX
+        this.realsMask.y = maskSize.offsetY
     }
 }

@@ -12,6 +12,12 @@
         "slotsAssets": {
             "filesCount": 8,
             "urlTemplate": "assets/slots/slots-{fileID}.json"
+        },
+        "maskSize": {
+            "xPersentage": 0.915,
+            "yPersentage": 0.757,
+            "offsetX": 86,
+            "offsetY": 122
         }
     }
 }
