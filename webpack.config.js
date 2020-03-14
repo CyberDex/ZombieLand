@@ -29,8 +29,7 @@ module.exports = {
             to: 'assets'
         }]),
         new HTMLWebpackPlugin({
-            title: "ZombieLand",
-            meta: { viewport: 'width=device-width, initial-scale=1, shrink-to-fit=no' }
+            template: 'index.html'
         })
     ]
 }
