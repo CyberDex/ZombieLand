@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "start": "webpack-dev-server --config webpack.config.js"
+    "start": "webpack-dev-server"
   },
   "devDependencies": {
     "@babel/core": "^7.4.5",

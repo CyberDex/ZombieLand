@@ -1,15 +1,13 @@
 import { Application } from "pixi.js"
-
 import Background from './components/Background'
 import Reels from './components/Reels'
 
 class Game extends Application {
-
     private background: Background;
     private reels: Reels;
 
-    constructor(config?: {}) {
-        super(config)
+    constructor() {
+        super()
         document.body.appendChild(this.view)
         window.addEventListener('resize', this.onResize.bind(this))
         this.init()
@@ -18,7 +16,7 @@ class Game extends Application {
     init() {
         this.loader.add('bg', './assets/bg.png')
         this.loader.add('reels', './assets/reels.png')
-        this.loader.add('slot', './assets/slots/1/1.png')
+        this.loader.add('slots', './assets/slots-0.json')
         this.loader.load(() => this.draw())
     }
 
@@ -44,4 +42,4 @@ class Game extends Application {
         this.reels.resize(width, height)
     }
 }
-new Game()
+document.body.appendChild(new Game().view);

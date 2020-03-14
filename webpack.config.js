@@ -25,12 +25,12 @@ module.exports = {
     devtool: 'inline-source-map',
     plugins: [
         new CopyWebpackPlugin([{
-            from: 'build/assets',
+            from: 'assets',
             to: 'assets'
         }]),
         new HTMLWebpackPlugin({
-            template: 'build/index.html',
-            filename: 'index.html'
+            title: "ZombieLand",
+            meta: { viewport: 'width=device-width, initial-scale=1, shrink-to-fit=no' }
         })
     ]
 }
