@@ -1,21 +1,27 @@
-import { Sprite, Texture } from "pixi.js"
+import { AnimatedSprite, Texture, Container } from "pixi.js"
 
-export default class Slot extends Sprite {
-    private sprite: Sprite;
+export default class Slot extends Container {
+    private animation: AnimatedSprite;
+    private texture: Texture;
 
-    constructor(texture: string) {
-        super(Texture.EMPTY)
-
-        this.sprite = Sprite.from(texture)
-        this.sprite.anchor.set(0.5)
-        this.addChild(this.sprite)
+    constructor(slot: string, framesCount = 1) {
+        super()
+        const animTextures = [];
+        for (let i = 0; i < framesCount; i++) {
+            this.texture = Texture.from(`slots/${slot}/${i + 1}`);
+            animTextures.push(this.texture);
+        }
+        this.animation = new AnimatedSprite(animTextures);
+        this.addChild(this.animation)
+        this.animation.anchor.set(0.5)
     }
 
-    resize(width: number, height: number) {
-        this.x = width / 2
-        this.y = height / 2
+    public play() {
+        this.animation.play();
+    }
 
-        // this.width = width * .2
-        // this.height = height * .2
+    public resize(width: number) {
+        this.width = width * .17
+        this.height = this.texture.height * width / this.texture.width * .17
     }
 }
