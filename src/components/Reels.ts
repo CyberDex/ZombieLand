@@ -51,7 +51,7 @@ export default class Reels extends Sprite {
                     y: y * slotHeight,
                     w: slotWidth,
                     h: slotHeight,
-                    framesCount: this.config.framesCount[slotType]
+                    parameters: this.config.slots
                 })
                 reel.addChild(slot)
             }

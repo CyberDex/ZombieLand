@@ -19,6 +19,15 @@ export interface IReelsConfig {
         offsetX: number;
         offsetY: number;
     }
+    slots: ISlotConfig;
+}
+
+export interface ISlotConfig {
+    fileTemplate: string;
+    marging: {
+        x: number;
+        y: number;
+    },
     framesCount: {
         [key: number]: number;
     }
