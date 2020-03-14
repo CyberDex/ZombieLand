@@ -1,14 +1,11 @@
 import { Sprite, Texture, Container } from "pixi.js"
+import { IReelsConfig } from "../interfaces/IConfig";
 import Slot from './Slot'
 
 export default class Reels extends Sprite {
     private reals: Container;
 
-    constructor(config: {
-        bg: string;
-        reelsCount: number;
-        slotsCount: number;
-    }) {
+    constructor(config: IReelsConfig) {
         super(Texture.from(config.bg))
 
         this.reals = new Container();

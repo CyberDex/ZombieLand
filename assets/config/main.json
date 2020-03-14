@@ -1,5 +1,5 @@
 {
-    "preload": {
+    "globalAssets": {
         "bg": "assets/bg.png",
         "reels": "assets/reels.png",
         "logo": "assets/logo.png",
@@ -9,7 +9,7 @@
         "bg": "reels",
         "reelsCount": 5,
         "slotsCount": 3,
-        "preload": {
+        "slotsAssets": {
             "filesCount": 8,
             "urlTemplate": "assets/slots/slots-{fileID}.json"
         }

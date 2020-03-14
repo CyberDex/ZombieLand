@@ -1,6 +1,6 @@
 export default interface IConfig {
     reels?: IReelsConfig,
-    preload?: {
+    globalAssets?: {
         [key: string]: string;
     }
 }
@@ -9,7 +9,7 @@ export interface IReelsConfig {
     bg: string;
     reelsCount: number;
     slotsCount: number;
-    preload?: {
+    slotsAssets?: {
         filesCount: number;
         urlTemplate: string;
     }

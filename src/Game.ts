@@ -27,10 +27,10 @@ class Game extends Application {
 
     private loadAssets(): Promise<any> {
         return new Promise(resolve => {
-            for (const asset in this.config?.preload) {
-                this.loader.add(asset, this.config.preload[asset])
+            for (const asset in this.config?.globalAssets) {
+                this.loader.add(asset, this.config.globalAssets[asset])
             }
-            const reelsPreload = this.config?.reels?.preload;
+            const reelsPreload = this.config?.reels?.slotsAssets;
             for (let i = 0; i < reelsPreload?.filesCount; i++) {
                 this.loader.add(reelsPreload.urlTemplate.replace("{fileID}", String(i)))
             }
