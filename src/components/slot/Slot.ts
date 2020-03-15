@@ -1,14 +1,15 @@
 import { AnimatedSprite, Texture, Container, Sprite } from 'pixi.js';
-import { SlotTypes } from "../enums/SlotTypes";
-import { ISlotConfig } from '../interfaces/IConfig';
-import ISlot from "../interfaces/ISlot";
+import { SlotTypes } from "../../helpers/enums/slotTypes";
+import { ISlotConfig, ISlot } from '../../helpers/interfaces/ISlotMachine';
 
 export default class Slot extends Sprite {
+    public config: ISlot;
     private animation: AnimatedSprite;
     private activness = false;
 
     constructor(config: ISlot) {
         super(Texture.from(config.parameters.fileTemplate + config.type))
+        this.config = config;
 
         const marginX = config.parameters.marging.x
         const marginY = config.parameters.marging.y
@@ -20,6 +21,13 @@ export default class Slot extends Sprite {
         this.animation = this.addAnimation(config)
         this.addChild(this.animation)
         this.active = true;
+    }
+
+    public update(type: SlotTypes, position: number) {
+        this.y = position
+        this.config.type = type;
+        this.texture = Texture.from(this.config.parameters.fileTemplate + type);
+        // todo: reacreate animation
     }
 
     public set active(active: boolean) {

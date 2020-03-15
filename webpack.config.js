@@ -3,7 +3,7 @@ const HTMLWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = {
     entry: {
-        index: './src/Game.ts',
+        index: './src/main.ts',
     },
     mode: 'development',
     devServer: {

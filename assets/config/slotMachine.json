@@ -1,0 +1,39 @@
+{
+    "assets": [
+        "assets/slots/0.json",
+        "assets/slots/1.json"
+    ],
+    "reelsCount": 5,
+    "slotsCount": 3,
+    "hiddenSlotsCount": 2,
+    "reelSpeed": 2,
+    "spinTime": 1,
+    "dimensions": {
+        "xPersentage": 0.915,
+        "yPersentage": 0.75,
+        "offsetX": 86,
+        "offsetY": 130
+    },
+    "slots": {
+        "fileTemplate": "slots/",
+        "marging": {
+            "x": 60,
+            "y": 40
+        },
+        "framesCount": {
+            "1": 40,
+            "2": 40,
+            "3": 40,
+            "4": 40,
+            "5": 41,
+            "6": 30,
+            "7": 35,
+            "8": 30,
+            "9": 35,
+            "10": 35,
+            "11": 64,
+            "12": 37,
+            "13": 32
+        }
+    }
+}

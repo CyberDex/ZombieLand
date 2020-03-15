@@ -1,5 +1,5 @@
 import { Sprite, Texture } from "pixi.js"
-import { Assets } from "../../enums/Assets";
+import { Assets } from "../../helpers/enums/assets";
 
 export default class Button extends Sprite {
     private activness = false;
