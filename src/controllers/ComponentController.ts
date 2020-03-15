@@ -5,8 +5,8 @@ import { Application, Container } from 'pixi.js';
 import { IUI } from '../helpers/interfaces/IUI';
 import PreloadController from "./PreloadController";
 import Machine from '../components/slot/Machine'
-import Background from '../components/ui/Background'
-import Logo from "../components/ui/Logo";
+import Background from '../components/bg/BG'
+import Logo from "../components/bg/Logo";
 import UI from '../components/ui/UI';
 
 export default class ComponentController {

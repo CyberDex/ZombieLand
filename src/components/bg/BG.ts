@@ -1,6 +1,6 @@
 import { Sprite, Texture } from "pixi.js"
 
-export default class Background extends Sprite {
+export default class BG extends Sprite {
     constructor(image: string) {
         super(Texture.from(image))
         this.anchor.set(0.5)

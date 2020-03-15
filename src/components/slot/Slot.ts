@@ -20,7 +20,7 @@ export default class Slot extends Sprite {
 
         this.animation = this.addAnimation(config)
         this.addChild(this.animation)
-        this.active = true;
+        this.active = false;
     }
 
     public update(type: SlotTypes, position: number) {
@@ -52,7 +52,7 @@ export default class Slot extends Sprite {
         const animation = new AnimatedSprite(animTextures);
         animation.alpha = 0
         animation.anchor.set(.5)
-        animation.x = this.width / 2 - 15
+        animation.x = this.width / 2 - 17
         animation.y = this.height / 2 - 15
         animation.loop = false
         return animation

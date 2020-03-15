@@ -1,10 +1,10 @@
 {
+    "bg": "slots/bg",
     "reelsCount": 5,
     "slotsCount": 3,
     "hiddenSlotsCount": 2,
     "reelSpeed": 2,
     "spinTime": 1,
-    "bg": "slots/bg",
     "slotWindowSizePersentage": {
         "w": 92,
         "h": 75

@@ -29,10 +29,14 @@ export default class Machine extends Sprite {
 
     private createReel(row: number, rollDown: boolean) {
         const reel = new Container()
+        reel.interactive = true
+        reel.buttonMode = true
+        reel.on('pointerdown', () => this.spin())
         const additionalSlots = this.config.hiddenSlotsCount
         reel.x = row * this.slotSize.w
         for (let slotLine = 0; slotLine < this.config.slotsCount + additionalSlots; slotLine++) {
-            reel.addChild(this.createSlot(rollDown ? slotLine : slotLine - additionalSlots))
+            const slot = this.createSlot(rollDown ? slotLine : slotLine - additionalSlots);
+            reel.addChild(slot)
         }
         return reel
     }
@@ -82,7 +86,7 @@ export default class Machine extends Sprite {
             const direction = reelNumber % 2 === 0 ? -1 : 1
             const reelMovement = new TimelineMax();
             reelMovement.to(reel, {
-                delay: reelNumber,
+                delay: reelNumber * .2,
                 y: this.slotSize.h * this.config.reelSpeed * direction,
                 duration: this.config.spinTime,
                 ease: Power1.easeIn,
@@ -96,14 +100,14 @@ export default class Machine extends Sprite {
     }
 
     private updateSlotsGoUp(reel: Container, animation: TimelineMax) {
-        reel.children.forEach((slot: Slot) => {
-            if (slot.height + slot.x + this.config.slots.marging.y / 2 + reel.y <= 0) {
-                slot.update(this.randomSlot, reel.children.length * this.slotSize.h)
-                // reel.addChild(slot)
-                // slot.removeChild(slot)
-                // animation.pause()
-            }
-        })
+        // reel.children.forEach((slot: Slot) => {
+        //     if (slot.height + slot.x + this.config.slots.marging.y / 2 + reel.y <= 0) {
+        // slot.update(this.randomSlot, reel.children.length * this.slotSize.h)
+        // reel.addChild(slot)
+        // slot.removeChild(slot)
+        // animation.pause()
+        // }
+        // })
     }
 
     private updateSlotsGoDown(reel: Container, animation: TimelineMax) {
