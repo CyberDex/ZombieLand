@@ -132,7 +132,7 @@
             <key>data</key>
             <struct type="DataFile">
                 <key>name</key>
-                <filename>../../assets/slots/{n}.json</filename>
+                <filename>../../assets/img/slot/{n}.json</filename>
             </struct>
         </map>
         <key>multiPack</key>
@@ -802,6 +802,21 @@
                 <rect>160,180,320,360</rect>
                 <key>scale9Paddings</key>
                 <rect>160,180,320,360</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">bg.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0,0</point_f>
+                <key>spriteScale</key>
+                <double>1</double>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>930,665,1861,1330</rect>
+                <key>scale9Paddings</key>
+                <rect>930,665,1861,1330</rect>
                 <key>scale9FromFile</key>
                 <false/>
             </struct>

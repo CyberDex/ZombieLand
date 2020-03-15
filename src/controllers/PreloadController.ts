@@ -4,7 +4,8 @@ import { Components } from '../helpers/enums/components';
 
 export default class PreloadController {
     private application: Application
-    private assetsFolder = "assets/config/"
+    private assetsFolder = "assets/img/"
+    private configsFolder = "assets/config/"
 
     constructor(application: Application) {
         this.application = application
@@ -13,7 +14,7 @@ export default class PreloadController {
     public async loadConfigs(componentsList: Components[]) {
         let loadedConfigs: IComponentsConfig = {}
         for (const component of componentsList) {
-            await this.loadConfig(this.assetsFolder + component + ".json")
+            await this.loadConfig(this.configsFolder + component + ".json")
                 .then(json => loadedConfigs[component] = json)
         }
         return loadedConfigs
@@ -28,16 +29,19 @@ export default class PreloadController {
         })
     }
 
-    public loadAssets(configs: IComponentsConfig): Promise<any> {
-        return new Promise(resolve => {
+    public async loadAssets(configs: IComponentsConfig): Promise<any> {
+        return new Promise(async resolve => {
             for (const config in configs) {
-                if (configs[config].assets) {
-                    this.application.loader.add(
-                        configs[config].assets
-                    )
-                }
+                await this.loadConfig(this.assetsFolder + config + "/0.json")
+                    .then((assets: any) => {
+                        this.application.loader.add(this.assetsFolder + config + "/0.json")
+                        assets.meta.related_multi_packs?.forEach((additionalAsset: any) => {
+                            this.application.loader.add(this.assetsFolder + config + "/" + additionalAsset)
+                        });
+                    })
+                    .catch(error => console.error(error))
             }
-            this.application.loader.load(resolve)
+            this.application.loader.load(() => resolve())
         })
     }
 }

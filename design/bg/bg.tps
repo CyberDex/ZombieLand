@@ -132,7 +132,7 @@
             <key>data</key>
             <struct type="DataFile">
                 <key>name</key>
-                <filename>../../assets/img/ui/{n}.json</filename>
+                <filename>../../assets/img/bg/{n}.json</filename>
             </struct>
         </map>
         <key>multiPack</key>
@@ -159,7 +159,7 @@
         <key>globalSpriteSettings</key>
         <struct type="SpriteSettings">
             <key>scale</key>
-            <double>0.2</double>
+            <double>1</double>
             <key>scaleMode</key>
             <enum type="ScaleMode">Smooth</enum>
             <key>extrude</key>
@@ -181,8 +181,7 @@
         </struct>
         <key>individualSpriteSettings</key>
         <map type="IndividualSpriteSettingsMap">
-            <key type="filename">buttons/spin/default.png</key>
-            <key type="filename">buttons/spin/hover.png</key>
+            <key type="filename">bg.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
                 <point_f>0,0</point_f>
@@ -191,14 +190,13 @@
                 <key>scale9Enabled</key>
                 <false/>
                 <key>scale9Borders</key>
-                <rect>228,95,455,191</rect>
+                <rect>480,270,960,540</rect>
                 <key>scale9Paddings</key>
-                <rect>228,95,455,191</rect>
+                <rect>480,270,960,540</rect>
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
-            <key type="filename">buttons/spin/disabled.png</key>
-            <key type="filename">buttons/spin/pressed.png</key>
+            <key type="filename">logo.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
                 <point_f>0,0</point_f>
@@ -207,24 +205,9 @@
                 <key>scale9Enabled</key>
                 <false/>
                 <key>scale9Borders</key>
-                <rect>132,55,263,111</rect>
+                <rect>402,55,803,109</rect>
                 <key>scale9Paddings</key>
-                <rect>132,55,263,111</rect>
-                <key>scale9FromFile</key>
-                <false/>
-            </struct>
-            <key type="filename">ui.png</key>
-            <struct type="IndividualSpriteSettings">
-                <key>pivotPoint</key>
-                <point_f>0,0</point_f>
-                <key>spriteScale</key>
-                <double>1</double>
-                <key>scale9Enabled</key>
-                <false/>
-                <key>scale9Borders</key>
-                <rect>876,643,1752,1286</rect>
-                <key>scale9Paddings</key>
-                <rect>876,643,1752,1286</rect>
+                <rect>402,55,803,109</rect>
                 <key>scale9FromFile</key>
                 <false/>
             </struct>

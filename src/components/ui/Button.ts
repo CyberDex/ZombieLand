@@ -1,18 +1,20 @@
 import { Sprite, Texture } from "pixi.js"
-import { Assets } from "../../helpers/enums/assets";
+import { IButtonConfig } from "../../helpers/interfaces/IUI";
 
 export default class Button extends Sprite {
-    private activness = false;
+    private activness = false
+    private config: IButtonConfig
 
-    constructor() {
-        super(Texture.from(Assets.SPIN_BUTTON_DEFAULT))
+    constructor(config: IButtonConfig) {
+        super(Texture.from(config.default))
+        this.config = config
         this.active = true
         this
-            .on('pointerdown', () => this.texture = Texture.from(Assets.SPIN_BUTTON_PRESSED))
-            .on('pointerup', () => this.texture = Texture.from(Assets.SPIN_BUTTON_HOVER))
-            .on('pointerupoutside', () => this.texture = Texture.from(Assets.SPIN_BUTTON_DEFAULT))
-            .on('pointerover', () => this.texture = Texture.from(Assets.SPIN_BUTTON_HOVER))
-            .on('pointerout', () => this.texture = Texture.from(Assets.SPIN_BUTTON_DEFAULT))
+            .on('pointerdown', () => this.texture = Texture.from(config.pressed))
+            .on('pointerup', () => this.texture = Texture.from(config.hover))
+            .on('pointerupoutside', () => this.texture = Texture.from(config.default))
+            .on('pointerover', () => this.texture = Texture.from(config.hover))
+            .on('pointerout', () => this.texture = Texture.from(config.default))
     }
 
     public onPress(event: () => void) {
@@ -24,7 +26,7 @@ export default class Button extends Sprite {
         this.activness = active
         this.interactive = active
         this.buttonMode = active
-        this.texture = Texture.from(active ? Assets.SPIN_BUTTON_DEFAULT : Assets.SPIN_BUTTON_DISABLED)
+        this.texture = Texture.from(active ? this.config.default : this.config.disabled)
     }
 
     public get active() {
@@ -38,12 +40,12 @@ export default class Button extends Sprite {
         this.position.x = width / 2
         this.position.y = height / 12
 
-        if (this.width > width * .95) {
-            this.width = width * .95
-            this.height = this.texture.height * this.width / this.texture.width * .95
+        // if (this.width > width * .95) {
+        //     this.width = width * .95
+        //     this.height = this.texture.height * this.width / this.texture.width * .95
 
-            this.position.x = width / 2
-            this.position.y = height / 6
-        }
+        //     this.position.x = width / 2
+        //     this.position.y = height / 6
+        // }
     }
 }

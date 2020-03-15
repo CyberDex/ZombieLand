@@ -13,8 +13,8 @@ export default class Slot extends Sprite {
 
         const marginX = config.parameters.marging.x
         const marginY = config.parameters.marging.y
-        this.x = config.x + marginX / 2
-        this.y = config.y + marginY / 2
+        this.x = config.x + marginX
+        this.y = config.y + marginY
         this.width = config.w - marginX
         this.height = config.h - marginY
 
@@ -52,10 +52,8 @@ export default class Slot extends Sprite {
         const animation = new AnimatedSprite(animTextures);
         animation.alpha = 0
         animation.anchor.set(.5)
-        const marginX = config.parameters.marging.x
-        const marginY = config.parameters.marging.y
-        animation.x = this.width - marginX / 4
-        animation.y = this.height - marginY / 2.2
+        animation.x = this.width / 2 - 15
+        animation.y = this.height / 2 - 15
         animation.loop = false
         return animation
     }

@@ -1,6 +1,11 @@
 {
-    "assets": [
-        "assets/ui/0.json",
-        "assets/ui/1.json"
-    ]
+    "ui": "ui/ui",
+    "buttons": {
+        "spin": {
+            "default": "ui/buttons/spin/default",
+            "hover": "ui/buttons/spin/hover",
+            "pressed": "ui/buttons/spin/pressed",
+            "disabled": "ui/buttons/spin/disabled"
+        }
+    }
 }

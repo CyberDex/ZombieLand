@@ -14,8 +14,9 @@ export default class SlotGame extends Application {
 
     public async init() {
         await this.componentsController.initComponents([
+            Components.BG,
+            Components.SLOT_MACHINE,
             Components.UI,
-            Components.SLOT_MACHINE
         ])
         this.onResize()
     }

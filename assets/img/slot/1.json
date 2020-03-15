@@ -1583,7 +1583,7 @@
 	"format": "RGBA8888",
 	"size": {"w":1946,"h":1677},
 	"scale": "0.2",
-	"related_multi_packs": [ "0.json" ],
-	"smartupdate": "$TexturePacker:SmartUpdate:a536cf68154af5045c59be540947df4e:64d7e68fd447a65db8845583811ef658:aff8d33e5df1ba4dda7fefc2eef08b0a$"
+	"related_multi_packs": [ "0.json", "2.json" ],
+	"smartupdate": "$TexturePacker:SmartUpdate:75cd8f0b414be36e107efd0953abf562:d579fa8c5411be3ba95e65a1c286b9d9:7a235e96edfc13480f4895e06606c7a2$"
 }
 }

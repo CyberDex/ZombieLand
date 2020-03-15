@@ -1,16 +1,17 @@
 import { Components } from '../helpers/enums/components';
-import { Assets } from '../helpers/enums/assets';
-import { IComponentsList, IComponentsConfig, IComponentConfig, IComponent } from '../helpers/interfaces/IComponents';
+import { IComponentsList, IComponentsConfig, IComponentConfig } from '../helpers/interfaces/IComponents';
 import { ISlotMachine } from '../helpers/interfaces/ISlotMachine';
-import { Application } from 'pixi.js';
+import { Application, Container } from 'pixi.js';
+import { IUI } from '../helpers/interfaces/IUI';
 import PreloadController from "./PreloadController";
+import Machine from '../components/slot/Machine'
 import Background from '../components/ui/Background'
 import Logo from "../components/ui/Logo";
-import Machine from '../components/slot/Machine'
+import UI from '../components/ui/UI';
 
 export default class ComponentController {
     private application: Application
-    private components: IComponent[]
+    private components: IComponentsList
     private preloader: PreloadController
 
     constructor(application: Application) {
@@ -26,18 +27,25 @@ export default class ComponentController {
         }
     }
 
-    private initComponent(componentType: string, config: IComponentConfig) {
+    private initComponent(componentType: Components, config: IComponentConfig) {
         switch (componentType) {
+            case Components.BG:
+                this.application.stage.addChild(
+                    new Background(config.bg),
+                    new Logo(config.logo)
+                )
+                break;
             case Components.SLOT_MACHINE:
+                // new SlotsController(this.application, config as IUI)
                 this.application.stage.addChild(
                     new Machine(config as ISlotMachine)
                 )
                 break;
             case Components.UI:
                 this.application.stage.addChild(
-                    new Background(Assets.BG),
-                    new Logo(Assets.LOGO)
+                    new UI(config as IUI, this.application),
                 )
+                // new UIController(this.application, config as IUI)
                 break;
         }
     }

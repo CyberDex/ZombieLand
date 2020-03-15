@@ -1,4 +1,5 @@
 export enum Components {
-    SLOT_MACHINE = "slotMachine",
+    BG = "bg",
+    SLOT_MACHINE = "slot",
     UI = "ui"
 }
