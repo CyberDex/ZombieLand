@@ -10,15 +10,14 @@ export default class Logo extends Sprite {
         this.height = height * .1
         this.width = this.texture.width * this.height / this.texture.height
 
-        this.position.x = width * .2
-        this.position.y = height * .12
+        this.position.x = width * .5
+        this.position.y = height * .10
 
         if (this.width > width * .95) {
             this.width = width * .95
             this.height = this.texture.height * this.width / this.texture.width * .95
 
-            this.position.x = width * .2
-            this.position.y = height * .6
+            this.position.y = height * .2
         }
     }
 }
