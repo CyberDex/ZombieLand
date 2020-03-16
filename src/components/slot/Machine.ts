@@ -122,15 +122,12 @@ export default class Machine extends Sprite {
         this.height = height * .8
         this.width = this.texture.width * height / this.texture.height * .8
 
-        this.position.x = (width - this.width) / 2
-        this.position.y = (height - this.height) / 1.14
-
         if (this.width > width * .98) {
             this.width = width * .98
             this.height = this.texture.height * width / this.texture.width * .98
-
-            this.position.x = (width - this.width) / 2
-            this.position.y = (height - this.height) / 1.5
         }
+
+        this.position.x = (width - this.width) / 2
+        this.position.y = (height - this.height) / 1.2
     }
 }
