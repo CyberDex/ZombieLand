@@ -36,3 +36,5 @@ export interface ISlot {
     h: number
     parameters: ISlotConfig
 }
+
+export type IResult = number[][]
