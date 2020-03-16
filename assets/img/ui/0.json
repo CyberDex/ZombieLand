@@ -10,7 +10,7 @@
 },
 "ui/buttons/spin/disabled":
 {
-	"frame": {"x":422,"y":0,"w":422,"h":177},
+	"frame": {"x":423,"y":0,"w":422,"h":177},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":422,"h":177},
@@ -18,7 +18,7 @@
 },
 "ui/buttons/spin/hover":
 {
-	"frame": {"x":844,"y":0,"w":422,"h":177},
+	"frame": {"x":846,"y":0,"w":422,"h":177},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":422,"h":177},
@@ -26,7 +26,7 @@
 },
 "ui/buttons/spin/pressed":
 {
-	"frame": {"x":1266,"y":0,"w":422,"h":177},
+	"frame": {"x":1269,"y":0,"w":422,"h":177},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":422,"h":177},
@@ -34,7 +34,7 @@
 },
 "ui/ui":
 {
-	"frame": {"x":0,"y":177,"w":1627,"h":1196},
+	"frame": {"x":0,"y":178,"w":1627,"h":1196},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":1627,"h":1196},
@@ -45,8 +45,8 @@
 	"version": "1.0",
 	"image": "0.png",
 	"format": "RGBA8888",
-	"size": {"w":1688,"h":1373},
+	"size": {"w":1691,"h":1374},
 	"scale": "0.5",
-	"smartupdate": "$TexturePacker:SmartUpdate:b6b7ff3e20f5db73f902d360f29a98f4:555331ffb65651b3acaae58bdc16f96d:f91cade670d3cd0da3efe30dce0ef325$"
+	"smartupdate": "$TexturePacker:SmartUpdate:739449c0d05cba4565e904d52d1937f5:555331ffb65651b3acaae58bdc16f96d:f91cade670d3cd0da3efe30dce0ef325$"
 }
 }

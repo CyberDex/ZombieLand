@@ -10,7 +10,7 @@
 },
 "bg/logo":
 {
-	"frame": {"x":0,"y":1500,"w":1132,"h":154},
+	"frame": {"x":0,"y":1501,"w":1132,"h":154},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":1132,"h":154},
@@ -21,8 +21,8 @@
 	"version": "1.0",
 	"image": "0.png",
 	"format": "RGBA8888",
-	"size": {"w":2000,"h":1654},
+	"size": {"w":2000,"h":1655},
 	"scale": "0.5",
-	"smartupdate": "$TexturePacker:SmartUpdate:4570e84b0a3bc1a3f56a952dfc0b7f3b:e9bb8beef6d129a838d4f9dcbc9b7f41:f91cade670d3cd0da3efe30dce0ef325$"
+	"smartupdate": "$TexturePacker:SmartUpdate:f12dcba9755b7abbd114f9265120b56c:e9bb8beef6d129a838d4f9dcbc9b7f41:f91cade670d3cd0da3efe30dce0ef325$"
 }
 }
