@@ -2,9 +2,10 @@
     "bg": "slots/bg",
     "reelsCount": 5,
     "slotsCount": 3,
-    "hiddenSlotsCount": 2,
-    "reelSpeed": 2,
-    "spinTime": 1,
+    "additionalSlots": 2,
+    "reelSpeed": 6,
+    "spinTime": 5,
+    "reelDelay": 0.5,
     "reelsOffsetX": -40,
     "reelsOffsetY": 70,
     "slotWindowSizePersentage": {

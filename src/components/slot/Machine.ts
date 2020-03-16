@@ -32,10 +32,9 @@ export default class Machine extends Sprite {
         reel.interactive = true
         reel.buttonMode = true
         reel.on('pointerdown', () => this.spin())
-        const additionalSlots = this.config.hiddenSlotsCount
         reel.x = row * this.slotSize.w
-        for (let slotLine = 0; slotLine < this.config.slotsCount + additionalSlots; slotLine++) {
-            const slot = this.createSlot(rollDown ? slotLine : slotLine - additionalSlots);
+        for (let slotLine = 0; slotLine < this.startSlotsCount; slotLine++) {
+            const slot = this.createSlot(rollDown ? slotLine : slotLine - this.config.additionalSlots);
             reel.addChild(slot)
         }
         return reel
@@ -84,10 +83,11 @@ export default class Machine extends Sprite {
     public spin() {
         this.reels.children.forEach((reel, reelNumber) => {
             const direction = reelNumber % 2 === 0 ? -1 : 1
+            const newPosition = this.config.reelSpeed * this.slotSize.h * this.config.spinTime * direction
             const reelMovement = new TimelineMax();
             reelMovement.to(reel, {
-                delay: reelNumber * .2,
-                y: this.slotSize.h * this.config.reelSpeed * direction,
+                delay: reelNumber * this.config.reelDelay,
+                y: newPosition,
                 duration: this.config.spinTime,
                 ease: Power1.easeIn,
                 onUpdate: () => {
@@ -100,22 +100,21 @@ export default class Machine extends Sprite {
     }
 
     private updateSlotsGoUp(reel: Container, animation: TimelineMax) {
-        // reel.children.forEach((slot: Slot) => {
-        //     if (slot.height + slot.x + this.config.slots.marging.y / 2 + reel.y <= 0) {
-        // slot.update(this.randomSlot, reel.children.length * this.slotSize.h)
-        // reel.addChild(slot)
-        // slot.removeChild(slot)
-        // animation.pause()
-        // }
-        // })
+        const newSlotsCount = reel.children.length - this.startSlotsCount
+        if (reel.y < -this.slotSize.h * newSlotsCount) {
+            reel.addChild(this.createSlot(reel.children.length))
+        }
     }
 
     private updateSlotsGoDown(reel: Container, animation: TimelineMax) {
-        // reel.children.forEach((slot: Sprite) => {
-        //     if (slot.y >= 0) {
-        //         slot.y = -slot.height
-        //     }
-        // })
+        const newSlotsCount = reel.children.length - this.startSlotsCount
+        if (reel.y + this.slotSize.h + this.slotSize.h + this.slotSize.h > this.slotSize.h * newSlotsCount) {
+            reel.addChildAt(this.createSlot(-newSlotsCount), 0)
+        }
+    }
+
+    private get startSlotsCount(): number {
+        return this.config.slotsCount + this.config.additionalSlots
     }
 
     public resize(width: number, height: number) {
