@@ -5,6 +5,8 @@
     "hiddenSlotsCount": 2,
     "reelSpeed": 2,
     "spinTime": 1,
+    "reelsOffsetX": -40,
+    "reelsOffsetY": 70,
     "slotWindowSizePersentage": {
         "w": 92,
         "h": 75

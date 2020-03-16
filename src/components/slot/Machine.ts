@@ -66,9 +66,9 @@ export default class Machine extends Sprite {
     private get maskSize(): { x: number; y: number, w: number; h: number } {
         const maskSize = this.config.slotWindowSizePersentage
         const w = this.texture.width * (maskSize.w / 100)
-        const h = this.texture.height * (maskSize.h / 100)
+        const h = this.texture.height * (maskSize.h / 100) + this.config.reelsOffsetY
         const x = (this.texture.width - w) / 3
-        const y = (this.texture.height - h) / 2
+        const y = (this.texture.height - h) / 2 + this.config.reelsOffsetX
         return { x, y, w, h }
     }
 
