@@ -7,11 +7,11 @@ import Slot from './Slot'
 export default class Machine extends Sprite {
     private reels: Container
     private config: ISlotMachine
+    private onAction = false
 
     constructor(config: ISlotMachine) {
         super(Texture.from(config.bg))
         this.config = config;
-
         this.addChild(this.reels = this.createReels())
         this.reels.mask = this.createMask()
     }
@@ -81,7 +81,9 @@ export default class Machine extends Sprite {
     }
 
     public spin() {
-        this.reels.children.forEach((reel, reelNumber) => {
+        if (this.onAction) { return }
+        this.onAction = true
+        this.reels.children.forEach((reel: Container, reelNumber) => {
             const direction = reelNumber % 2 === 0 ? -1 : 1
             const newPosition = this.config.reelSpeed * this.slotSize.h * this.config.spinTime * direction
             const reelMovement = new TimelineMax();
@@ -92,8 +94,31 @@ export default class Machine extends Sprite {
                 ease: Power1.easeIn,
                 onUpdate: () => {
                     direction > 0
-                        ? this.updateSlotsGoDown(reel as Container, reelMovement)
-                        : this.updateSlotsGoUp(reel as Container, reelMovement)
+                        ? this.updateSlotsGoDown(reel, reelMovement)
+                        : this.updateSlotsGoUp(reel, reelMovement)
+                },
+                onComplete: () => {
+                    const newSlotsCount = reel.children.length - this.startSlotsCount
+                    if (direction < 0) {
+                        for (let i = 0; i < newSlotsCount; i++) {
+                            reel.removeChildAt(0)
+                        }
+                        const midSlot = reel.getChildAt(1) as Slot
+                        midSlot.playAnimation()
+                    } else {
+                        for (let i = 0; i < newSlotsCount; i++) {
+                            reel.removeChildAt(reel.children.length - 1)
+                        }
+                        const midSlot = reel.getChildAt(1 + this.config.additionalSlots) as Slot
+                        midSlot.playAnimation()
+                    }
+                    reel.children.forEach((slot, number) => {
+                        slot.y = direction < 0
+                            ? this.slotSize.h * number
+                            : this.slotSize.h * number - this.slotSize.h * this.config.additionalSlots
+                    });
+                    reel.y = 0
+                    this.onAction = false
                 }
             })
         })
@@ -102,14 +127,16 @@ export default class Machine extends Sprite {
     private updateSlotsGoUp(reel: Container, animation: TimelineMax) {
         const newSlotsCount = reel.children.length - this.startSlotsCount
         if (reel.y < -this.slotSize.h * newSlotsCount) {
-            reel.addChild(this.createSlot(reel.children.length))
+            const slotTyle = this.randomSlot
+            reel.addChild(this.createSlot(reel.children.length, slotTyle))
         }
     }
 
     private updateSlotsGoDown(reel: Container, animation: TimelineMax) {
         const newSlotsCount = reel.children.length - this.startSlotsCount
         if (reel.y + this.slotSize.h + this.slotSize.h + this.slotSize.h > this.slotSize.h * newSlotsCount) {
-            reel.addChildAt(this.createSlot(-newSlotsCount), 0)
+            const slotTyle = this.randomSlot
+            reel.addChildAt(this.createSlot(-newSlotsCount, slotTyle), 0)
         }
     }
 

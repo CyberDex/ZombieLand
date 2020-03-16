@@ -1,6 +1,5 @@
-import { AnimatedSprite, Texture, Container, Sprite } from 'pixi.js';
-import { SlotTypes } from "../../helpers/enums/slotTypes";
-import { ISlotConfig, ISlot } from '../../helpers/interfaces/ISlotMachine';
+import { AnimatedSprite, Texture, Sprite } from 'pixi.js';
+import { ISlot } from '../../helpers/interfaces/ISlotMachine';
 
 export default class Slot extends Sprite {
     public config: ISlot;
@@ -20,28 +19,6 @@ export default class Slot extends Sprite {
 
         this.animation = this.addAnimation(config)
         this.addChild(this.animation)
-        this.active = false;
-    }
-
-    public update(type: SlotTypes, position: number) {
-        this.y = position
-        this.config.type = type;
-        this.texture = Texture.from(this.config.parameters.fileTemplate + type);
-        // todo: reacreate animation
-    }
-
-    public set active(active: boolean) {
-        if (this.activness === active) { return; }
-        this.activness = active
-        this.interactive = active
-        this.buttonMode = active
-        active
-            ? this.on('pointerdown', this.play)
-            : this.off('pointerdown', this.play)
-    }
-
-    public get active() {
-        return this.activness
     }
 
     private addAnimation(config: ISlot) {
@@ -52,8 +29,8 @@ export default class Slot extends Sprite {
         const animation = new AnimatedSprite(animTextures);
         animation.alpha = 0
         animation.anchor.set(.5)
-        animation.x = this.width / 2 - 17
-        animation.y = this.height / 2 - 15
+        animation.x = this.width / 2 + 8
+        animation.y = this.height / 2
         animation.loop = false
         return animation
     }
@@ -66,7 +43,7 @@ export default class Slot extends Sprite {
         return animTextures
     }
 
-    public play() {
+    public playAnimation() {
         this.animation.alpha = 1
         this.animation.gotoAndPlay(1)
         this.animation.onComplete = () => {

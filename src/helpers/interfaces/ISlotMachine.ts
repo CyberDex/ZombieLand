@@ -1,21 +1,18 @@
-import { IComponentConfig } from "./IComponents"
+import { IComponentConfig } from './IComponents'
 import { SlotTypes } from '../enums/slotTypes'
 
 export interface ISlotMachine extends IComponentConfig {
     reelsCount: number
     slotsCount: number
-    hiddenSlotsCount: number
+    additionalSlots: number
     reelSpeed: number
     spinTime: number
-    slotsAssets?: {
-        filesCount: number
-        urlTemplate: string
-    },
-    dimensions: {
-        xPersentage: number
-        yPersentage: number
-        offsetX: number
-        offsetY: number
+    reelDelay: number
+    reelsOffsetX: number,
+    reelsOffsetY: number,
+    slotWindowSizePersentage: {
+        w: number
+        h: number
     }
     slots: ISlotConfig
 }
