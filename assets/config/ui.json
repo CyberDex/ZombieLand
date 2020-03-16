@@ -1,11 +1,25 @@
 {
-    "ui": "ui/ui",
-    "buttons": {
-        "spin": {
-            "default": "ui/buttons/spin/default",
-            "hover": "ui/buttons/spin/hover",
-            "pressed": "ui/buttons/spin/pressed",
-            "disabled": "ui/buttons/spin/disabled"
+    "ui": {
+        "texture": "ui/ui",
+        "pos": {
+            "lanscape": {
+                "maxHeight": 80,
+                "posX": 50,
+                "posY": 83
+            },
+            "portrait": {
+                "maxWidth": 98,
+                "posX": 50,
+                "posY": 83
+            }
+        },
+        "buttons": {
+            "spin": {
+                "default": "ui/buttons/spin/default",
+                "hover": "ui/buttons/spin/hover",
+                "pressed": "ui/buttons/spin/pressed",
+                "disabled": "ui/buttons/spin/disabled"
+            }
         }
     }
 }

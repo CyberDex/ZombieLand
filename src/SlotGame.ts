@@ -18,16 +18,21 @@ export default class SlotGame extends Application {
             Components.SLOT_MACHINE,
             Components.UI,
         ])
-        this.onResize()
     }
 
     private ready() {
         document.body.appendChild(this.view)
         window.addEventListener('resize', this.onResize.bind(this))
+        this.onResize()
     }
 
     private onResize() {
         this.renderer.resize(window.innerWidth + 2, window.innerHeight + 2)
-        this.stage.children.forEach((element: any) => element.resize(this.renderer.width, this.renderer.height));
+        this.stage.children.forEach((element: any) => {
+            element.resize({
+                width: this.renderer.width,
+                height: this.renderer.height
+            })
+        });
     }
 }

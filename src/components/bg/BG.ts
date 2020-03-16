@@ -1,21 +1,15 @@
-import { Sprite, Texture } from "pixi.js"
+import { IComponentConfig } from "../../helpers/interfaces/IComponents"
+import { ISize } from "pixi.js"
+import { fill } from "../../helpers/fit"
+import BaseComponent from "../BaseComponent"
 
-export default class BG extends Sprite {
-    constructor(image: string) {
-        super(Texture.from(image))
+export default class BG extends BaseComponent {
+    constructor(config: IComponentConfig) {
+        super(config)
         this.anchor.set(0.5)
     }
 
-    resize(width: number, height: number) {
-        this.position.x = width / 2
-        this.position.y = height / 2
-
-        this.height = height
-        this.width = this.texture.width * height / this.texture.height
-
-        if (this.width < width) {
-            this.width = width
-            this.height = this.texture.height * width / this.texture.width
-        }
+    public resize(size: ISize) {
+        fill(this, size)
     }
 }

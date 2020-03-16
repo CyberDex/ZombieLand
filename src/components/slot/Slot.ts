@@ -1,6 +1,6 @@
-import { AnimatedSprite, Texture, Container, Sprite } from 'pixi.js';
+import { AnimatedSprite, Texture, Sprite } from 'pixi.js';
 import { SlotTypes } from "../../helpers/enums/slotTypes";
-import { ISlotConfig, ISlot } from '../../helpers/interfaces/ISlotMachine';
+import { ISlot } from '../../helpers/interfaces/ISlotMachine';
 
 export default class Slot extends Sprite {
     public config: ISlot;

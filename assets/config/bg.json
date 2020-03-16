@@ -1,4 +1,20 @@
 {
-    "bg": "bg/bg",
-    "logo": "bg/logo"
+    "bg": {
+        "texture": "bg/bg"
+    },
+    "logo": {
+        "texture": "bg/logo",
+        "pos": {
+            "lanscape": {
+                "maxHeight": 10,
+                "posX": 50,
+                "posY": 5
+            },
+            "portrait": {
+                "maxWidth": 95,
+                "posX": 50,
+                "posY": 10
+            }
+        }
+    }
 }

@@ -1,5 +1,5 @@
 {
-    "bg": "slots/bg",
+    "texture": "slots/bg",
     "reelsCount": 5,
     "slotsCount": 3,
     "hiddenSlotsCount": 2,
@@ -29,6 +29,18 @@
             "11": 64,
             "12": 37,
             "13": 32
+        }
+    },
+    "pos": {
+        "lanscape": {
+            "maxHeight": 80,
+            "posX": 50,
+            "posY": 83
+        },
+        "portrait": {
+            "maxWidth": 98,
+            "posX": 50,
+            "posY": 83
         }
     }
 }

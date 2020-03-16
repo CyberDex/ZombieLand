@@ -6,9 +6,28 @@ export interface IComponentsConfig {
 }
 
 export interface IComponentConfig {
+    texture?: string
+    pos?: IPos
     [key: string]: any
 }
 
 export interface IComponentsList {
-    [key: string]: Container
+    [type: string]: {
+        elements?: Container[]
+    }
+}
+
+export interface IPos {
+    pos: {
+        lanscape: {
+            maxHeight: number
+            posX: number
+            posY: number
+        },
+        portrait: {
+            maxWidth: number
+            posX: number
+            posY: number
+        }
+    }
 }

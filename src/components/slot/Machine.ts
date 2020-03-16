@@ -1,17 +1,15 @@
-import { Sprite, Texture, Container, Graphics } from "pixi.js"
+import { Container, Graphics } from "pixi.js"
 import { ISlotMachine } from "../../helpers/interfaces/ISlotMachine";
 import { SlotTypes } from '../../helpers/enums/slotTypes';
 import { TimelineMax, Power1 } from "gsap";
 import Slot from './Slot'
+import BaseComponent from "../BaseComponent";
 
-export default class Machine extends Sprite {
+export default class Machine extends BaseComponent {
     private reels: Container
-    private config: ISlotMachine
 
     constructor(config: ISlotMachine) {
-        super(Texture.from(config.bg))
-        this.config = config;
-
+        super(config)
         this.addChild(this.reels = this.createReels())
         this.reels.mask = this.createMask()
     }
@@ -116,18 +114,5 @@ export default class Machine extends Sprite {
         //         slot.y = -slot.height
         //     }
         // })
-    }
-
-    public resize(width: number, height: number) {
-        this.height = height * .8
-        this.width = this.texture.width * height / this.texture.height * .8
-
-        if (this.width > width * .98) {
-            this.width = width * .98
-            this.height = this.texture.height * width / this.texture.width * .98
-        }
-
-        this.position.x = (width - this.width) / 2
-        this.position.y = (height - this.height) / 1.2
     }
 }
