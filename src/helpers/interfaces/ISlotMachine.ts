@@ -5,7 +5,7 @@ export interface ISlotMachine extends IComponentConfig {
     reelsCount: number
     slotsCount: number
     additionalSlots: number
-    reelSpeed: number
+    defaultSlotsAmountPerSpin: number
     spinTime: number
     reelDelay: number
     reelsOffsetX: number,
@@ -36,3 +36,5 @@ export interface ISlot {
     h: number
     parameters: ISlotConfig
 }
+
+export type IResult = number[][]
