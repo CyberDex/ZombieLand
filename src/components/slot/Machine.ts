@@ -29,6 +29,7 @@ export default class Machine extends Sprite {
         reels.x = this.maskSize.x
         reels.y = this.maskSize.y
         for (let reelNumber = 0; reelNumber < this.config.reelsCount; reelNumber++) {
+            this.makeButton(reelNumber, () => this.stopReel[reelNumber] = 2)
             const rollDown = reelNumber % 2 === 0
             reels.addChild(
                 this.createReel(reelNumber, rollDown)
@@ -39,9 +40,6 @@ export default class Machine extends Sprite {
 
     private createReel(reelNumber: number, rollDown: boolean) {
         const reel = new Container()
-        reel.interactive = true
-        reel.on('pointerdown', () => this.stopReel[reelNumber] = 2)
-
         reel.x = reelNumber * this.slotSize.w
         for (let slotLine = 0; slotLine < this.startSlotsCount; slotLine++) {
             reel.addChild(
@@ -49,6 +47,21 @@ export default class Machine extends Sprite {
             )
         }
         return reel
+    }
+
+    private makeButton(reelNumber: number, callback: () => void) {
+        const button = new Graphics()
+        button.beginFill(0x000000)
+        button.drawRect(
+            this.maskSize.x + reelNumber * this.slotSize.w + 25,
+            this.maskSize.y,
+            this.slotSize.w,
+            this.slotSize.h * this.config.slotsCount)
+        button.endFill()
+        button.alpha = 0
+        button.interactive = true
+        button.on('pointerdown', () => callback())
+        this.addChild(button)
     }
 
     private createSlot(slotLine: number, slotType = this.randomSlot) {
