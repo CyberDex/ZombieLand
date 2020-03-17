@@ -137,22 +137,24 @@ export default class Machine extends Sprite {
         const reelContainer: Container = this.reels.getChildAt(reelNumber) as Container
         const newSlotsCount = reelContainer.children.length - this.startSlotsCount
 
-        if (direction > 0 && reelContainer.y + this.slotSize.h * this.config.additionalSlots + 1 > this.slotSize.h * newSlotsCount) {
-            let slotType
-            if (this.actions[reelNumber] <= this.config.slotsCount) {
-                slotType = this.getResult()[reelNumber][this.actions[reelNumber]]
-            }
-            reelContainer.addChildAt(this.createSlot(-newSlotsCount, slotType), 0)
-            this.actions[reelNumber]--
-        } else if (reelContainer.y < -this.slotSize.h * newSlotsCount - 1) {
-            let slotType
-            if (this.actions[reelNumber] <= this.config.slotsCount) {
-                slotType = this.getResult()[reelNumber][this.actions[reelNumber]]
-            }
-            reelContainer.addChild(this.createSlot(reelContainer.children.length, slotType))
-            this.actions[reelNumber]--
-        }
+        let slotPosition
 
+        if (direction > 0 && reelContainer.y + this.slotSize.h * this.config.additionalSlots + 1 > this.slotSize.h * newSlotsCount) {
+            slotPosition = -newSlotsCount
+            reelContainer.addChildAt(this.createSlot(slotPosition, this.getSlotType(reelNumber)), 0)
+        } else if (reelContainer.y < -this.slotSize.h * newSlotsCount - 1) {
+            slotPosition = reelContainer.children.length
+            reelContainer.addChild(this.createSlot(slotPosition, this.getSlotType(reelNumber)))
+        }
+    }
+
+    private getSlotType(reelNumber: number) {
+        let slotType
+        if (this.actions[reelNumber] <= this.config.slotsCount) {
+            slotType = this.getResult()[reelNumber][this.actions[reelNumber]]
+        }
+        this.actions[reelNumber]--
+        return slotType
     }
 
     private cleanUpReel(reelNumber: number) {
