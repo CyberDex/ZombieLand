@@ -224,6 +224,8 @@ export default class Machine extends Sprite {
         }
 
         this.position.x = (width - this.width) / 2
-        this.position.y = (height - this.height) / 1.2
+        this.debug
+            ? this.position.y = (height - this.height) / 2
+            : this.position.y = (height - this.height) / 1.2
     }
 }
