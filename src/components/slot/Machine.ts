@@ -11,12 +11,15 @@ export default class Machine extends Sprite {
     private reels: Container
     private actions: number[] = []
     private stopReel: number[] = []
+    private debug = true
 
     constructor(config: ISlotMachine) {
         super(Texture.from(config.bg))
         this.config = config
         this.reels = this.createReels()
-        // this.reels.mask = this.createMask()
+        if (!this.debug) {
+            this.reels.mask = this.createMask()
+        }
         this.addChild(this.reels)
         EventsController.instance.on(Events.SPIN, () => this.spin(this.config.defaultSlotsAmountPerSpin))
     }
@@ -236,6 +239,6 @@ export default class Machine extends Sprite {
         }
 
         this.position.x = (width - this.width) / 2
-        this.position.y = (height - this.height) / 2
+        this.position.y = (height - this.height) / 1.2
     }
 }
