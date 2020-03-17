@@ -10,12 +10,13 @@ export default class Machine extends Sprite {
     private config: ISlotMachine
     private reels: Container
     private actions: number[] = []
+    private stopReel: number[] = []
 
     constructor(config: ISlotMachine) {
         super(Texture.from(config.bg))
         this.config = config
         this.reels = this.createReels()
-        this.reels.mask = this.createMask()
+        // this.reels.mask = this.createMask()
         this.addChild(this.reels)
         EventsController.instance.on(Events.SPIN, () => this.spin(this.config.defaultSlotsAmountPerSpin))
     }
@@ -93,9 +94,16 @@ export default class Machine extends Sprite {
             this.stopAll()
             return
         }
+        this.stopReel = [
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+            undefined,
+        ]
         this.reels.children.forEach((reel: Container, reelNumber) => {
-            this.roll(reelNumber, sinSlots)
-                .eventCallback('onUpdate', () => this.updateReelOnRoll(reelNumber))
+            const animation: TimelineMax = this.roll(reelNumber, sinSlots)
+                .eventCallback('onUpdate', () => this.updateReelOnRoll(reelNumber, animation))
                 // .eventCallback('onComplete', () => this.stopSpin(reelNumber))
                 .eventCallback('onComplete', () => this.cleanUpReel(reelNumber))
         })
@@ -106,9 +114,9 @@ export default class Machine extends Sprite {
         console.log(`STOP`, reelNumber);
     }
 
-    public stopAll(reelNumber?: number) {
+    public stopAll() {
         if (this.actions.length <= 0) { return }
-        console.log(`STOP_ALL`);
+        this.stopReel = [2, 2, 2, 2, 2]
     }
 
     private roll(reelNumber: number, slotsCount: number, type?: number): TimelineMax {
@@ -132,7 +140,7 @@ export default class Machine extends Sprite {
         return reelMovement
     }
 
-    private updateReelOnRoll(reelNumber: number) {
+    private updateReelOnRoll(reelNumber: number, animation: TimelineMax) {
         const direction = reelNumber % 2 === 0 ? -1 : 1
         const reelContainer: Container = this.reels.getChildAt(reelNumber) as Container
         const newSlotsCount = reelContainer.children.length - this.startSlotsCount
@@ -141,16 +149,37 @@ export default class Machine extends Sprite {
 
         if (direction > 0 && reelContainer.y + this.slotSize.h * this.config.additionalSlots + 1 > this.slotSize.h * newSlotsCount) {
             slotPosition = -newSlotsCount
+            if (this.stopReel[reelNumber] !== undefined && this.stopReel[reelNumber] === -3) {
+                animation.pause()
+                this.cleanUpReel(reelNumber)
+                return
+            }
             reelContainer.addChildAt(this.createSlot(slotPosition, this.getSlotType(reelNumber)), 0)
+            // if (this.actions[reelNumber] <= -3) {
+            //     animation.pause()
+            //     this.cleanUpReel(reelNumber)
+            // }
         } else if (reelContainer.y < -this.slotSize.h * newSlotsCount - 1) {
             slotPosition = reelContainer.children.length
+            if (this.stopReel[reelNumber] !== undefined && this.stopReel[reelNumber] === -3) {
+                animation.pause()
+                this.cleanUpReel(reelNumber)
+                return
+            }
             reelContainer.addChild(this.createSlot(slotPosition, this.getSlotType(reelNumber)))
+            // if (this.actions[reelNumber] <= -5) {
+            //     animation.pause()
+            //     this.cleanUpReel(reelNumber)
+            // }
         }
     }
 
     private getSlotType(reelNumber: number) {
         let slotType
-        if (this.actions[reelNumber] <= this.config.slotsCount) {
+        if (this.stopReel[reelNumber] !== undefined) {
+            this.stopReel[reelNumber]--
+            slotType = this.getResult()[reelNumber][this.stopReel[reelNumber] + 1]
+        } else if (this.actions[reelNumber] <= this.config.slotsCount) {
             slotType = this.getResult()[reelNumber][this.actions[reelNumber]]
         }
         this.actions[reelNumber]--
@@ -207,6 +236,6 @@ export default class Machine extends Sprite {
         }
 
         this.position.x = (width - this.width) / 2
-        this.position.y = (height - this.height) / 1.2
+        this.position.y = (height - this.height) / 2
     }
 }
