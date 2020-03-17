@@ -1,5 +1,5 @@
-import { Sprite, Texture } from "pixi.js"
-import { IButtonConfig } from "../../helpers/interfaces/IUI";
+import { Sprite, Texture } from 'pixi.js'
+import { IButtonConfig } from '../../helpers/interfaces/IUI'
 
 export default class Button extends Sprite {
     private activness = false
@@ -11,10 +11,10 @@ export default class Button extends Sprite {
         this.active = true
         this
             .on('pointerdown', () => this.texture = Texture.from(config.pressed))
-            .on('pointerup', () => this.texture = Texture.from(config.hover))
+            .on('pointerup', () => this.texture = Texture.from(config.default))
             .on('pointerupoutside', () => this.texture = Texture.from(config.default))
-            .on('pointerover', () => this.texture = Texture.from(config.hover))
             .on('pointerout', () => this.texture = Texture.from(config.default))
+            .on('pointerover', () => this.texture = Texture.from(config.hover))
     }
 
     public onPress(event: () => void) {
@@ -22,7 +22,7 @@ export default class Button extends Sprite {
     }
 
     public set active(active: boolean) {
-        if (this.activness === active) { return; }
+        if (this.activness === active) { return }
         this.activness = active
         this.interactive = active
         this.buttonMode = active

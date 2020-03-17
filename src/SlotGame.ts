@@ -1,7 +1,6 @@
-import { Application } from "pixi.js"
-import { Components } from "./helpers/enums/components";
-
-import ComponentController from "./controllers/ComponentController";
+import { Application } from 'pixi.js'
+import { Components } from './helpers/enums/components'
+import ComponentController from './controllers/ComponentController'
 
 export default class SlotGame extends Application {
     private componentsController: ComponentController
@@ -28,6 +27,6 @@ export default class SlotGame extends Application {
 
     private onResize() {
         this.renderer.resize(window.innerWidth + 2, window.innerHeight + 2)
-        this.stage.children.forEach((element: any) => element.resize(this.renderer.width, this.renderer.height));
+        this.stage.children.forEach((element: any) => element.resize(this.renderer.width, this.renderer.height))
     }
 }
