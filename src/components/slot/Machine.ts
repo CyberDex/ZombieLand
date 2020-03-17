@@ -7,14 +7,13 @@ import Slot from './Slot'
 export default class Machine extends Sprite {
     private reels: Container
     private config: ISlotMachine
-    private result: IResult
     private action: number[] = []
 
     constructor(config: ISlotMachine) {
         super(Texture.from(config.bg))
         this.config = config;
         this.addChild(this.reels = this.createReels())
-        // this.reels.mask = this.createMask()
+        this.reels.mask = this.createMask()
     }
 
     private createReels() {
@@ -32,7 +31,7 @@ export default class Machine extends Sprite {
         const reel = new Container()
         reel.interactive = true
         reel.buttonMode = true
-        reel.on('pointerdown', () => this.spin(10))
+        reel.on('pointerdown', () => this.spin(this.config.defaultSlotsAmountPerSpin))
         reel.x = row * this.slotSize.w
         for (let slotLine = 0; slotLine < this.startSlotsCount; slotLine++) {
             const slot = this.createSlot(rollDown ? slotLine : slotLine - this.config.additionalSlots);
@@ -83,7 +82,6 @@ export default class Machine extends Sprite {
 
     public spin(sinSlots: number) {
         if (this.action.length > 0) { return }
-        this.result = undefined
         this.reels.children.forEach((reel: Container, reelNumber) => {
             this.roll(reelNumber, sinSlots)
                 .eventCallback("onUpdate", () => this.updateReelOnRoll(reelNumber))
@@ -96,7 +94,10 @@ export default class Machine extends Sprite {
         this.action[reelNumber] = slotsCount
         const direction = reelNumber % 2 === 0 ? -1 : 1
         const reelContainer = this.reels.getChildAt(reelNumber) as Container
-        const newPosition = slotsCount * this.slotSize.h * direction
+        let newPosition = this.slotSize.h * (slotsCount) * direction
+        if (direction < 0) {
+            newPosition = this.slotSize.h * (slotsCount + this.config.slotsCount) * direction
+        }
         const reelMovement = new TimelineMax();
         const rollConfig: gsap.TweenVars = {
             delay: reelNumber * this.config.reelDelay,
@@ -114,13 +115,23 @@ export default class Machine extends Sprite {
         const direction = reelNumber % 2 === 0 ? -1 : 1
         const reelContainer: Container = this.reels.getChildAt(reelNumber) as Container
         const newSlotsCount = reelContainer.children.length - this.startSlotsCount
+
         if (direction > 0 && reelContainer.y + this.slotSize.h * this.config.additionalSlots + 1 > this.slotSize.h * newSlotsCount) {
-            const slotTyle = this.randomSlot
-            reelContainer.addChildAt(this.createSlot(-newSlotsCount, slotTyle), 0)
+            let slotType
+            if (this.action[reelNumber] <= this.config.slotsCount) {
+                slotType = this.getResult()[reelNumber][this.action[reelNumber]]
+            }
+            reelContainer.addChildAt(this.createSlot(-newSlotsCount, slotType), 0)
+            this.action[reelNumber]--
         } else if (reelContainer.y < -this.slotSize.h * newSlotsCount - 1) {
-            const slotTyle = this.randomSlot
-            reelContainer.addChild(this.createSlot(reelContainer.children.length, slotTyle))
+            let slotType
+            if (this.action[reelNumber] <= this.config.slotsCount) {
+                slotType = this.getResult()[reelNumber][this.action[reelNumber]]
+            }
+            reelContainer.addChild(this.createSlot(reelContainer.children.length, slotType))
+            this.action[reelNumber]--
         }
+
     }
 
     private cleanUpReel(reelNumber: number) {
@@ -145,9 +156,8 @@ export default class Machine extends Sprite {
                 ? this.slotSize.h * number + this.config.reelsOffsetX * -1
                 : (this.slotSize.h * number - this.slotSize.h * this.config.additionalSlots) + this.config.reelsOffsetX * -1
         });
+        this.action = []
         reelContainer.y = 0
-        delete this.action[reelNumber]
-        this.action.length--
     }
 
     private getResult(): IResult {
@@ -158,31 +168,6 @@ export default class Machine extends Sprite {
             [4, 4, 4],
             [5, 5, 5]
         ]
-    }
-
-    public stopSpin(reelNumber: number) {
-        this.result = this.getResult()
-        const direction = reelNumber % 2 === 0 ? -1 : 1
-        const reelContainer: Container = this.reels.getChildAt(reelNumber) as Container
-        this.result[reelNumber].forEach(slotTyle => {
-            if (direction > 0) {
-                const newSlotsCount = reelContainer.children.length - this.startSlotsCount
-                reelContainer.addChildAt(this.createSlot(-newSlotsCount, slotTyle), 0)
-            } else {
-                reelContainer.addChild(this.createSlot(reelContainer.children.length, slotTyle))
-            }
-        })
-        for (let i = 0; i < this.config.additionalSlots; i++) {
-            if (direction > 0) {
-                const newSlotsCount = reelContainer.children.length - this.startSlotsCount
-                reelContainer.addChildAt(this.createSlot(-newSlotsCount), 0)
-            } else {
-                reelContainer.addChild(this.createSlot(reelContainer.children.length))
-            }
-        }
-        const newPosition = reelContainer.y + (this.config.reelsCount) * this.slotSize.h * direction
-        this.roll(reelNumber, newPosition)
-            .eventCallback("onComplete", () => this.cleanUpReel(reelNumber))
     }
 
     private get startSlotsCount(): number {
@@ -199,6 +184,6 @@ export default class Machine extends Sprite {
         }
 
         this.position.x = (width - this.width) / 2
-        this.position.y = (height - this.height) / 2
+        this.position.y = (height - this.height) / 1.2
     }
 }
