@@ -88,15 +88,14 @@ export default class Machine extends Sprite {
         this.result = undefined
         this.reels.children.forEach((reel: Container, reelNumber) => {
             const direction = reelNumber % 2 === 0 ? -1 : 1
-            const newPosition = this.config.reelSpeed * this.slotSize.h * this.config.spinTime * direction
+            const newPosition = this.config.reelSpeed * this.slotSize.h * this.config.additionalSlots * this.config.spinTime * direction
             const reelMovement = new TimelineMax();
             reelMovement.to(reel, {
                 delay: reelNumber * this.config.reelDelay,
                 y: newPosition,
                 duration: this.config.spinTime,
-                ease: Power1.easeIn,
+                ease: Power1.easeInOut,
                 onUpdate: () => {
-
                     if (direction > 0) {
                         const newSlotsCount = reel.children.length - this.startSlotsCount
                         if (reel.y + this.slotSize.h + this.slotSize.h + this.slotSize.h > this.slotSize.h * newSlotsCount) {
@@ -124,8 +123,6 @@ export default class Machine extends Sprite {
                     }
                 },
                 onComplete: () => {
-                    console.log(`onComplete`);
-
                     const newSlotsCount = reel.children.length - this.startSlotsCount
                     if (direction < 0) {
                         for (let i = 0; i < newSlotsCount; i++) {
@@ -142,8 +139,8 @@ export default class Machine extends Sprite {
                     }
                     reel.children.forEach((slot, number) => {
                         slot.y = direction < 0
-                            ? this.slotSize.h * number
-                            : this.slotSize.h * number - this.slotSize.h * this.config.additionalSlots
+                            ? this.slotSize.h * number + this.config.reelsOffsetX * -1
+                            : (this.slotSize.h * number - this.slotSize.h * this.config.additionalSlots) + this.config.reelsOffsetX * -1
                     });
                     reel.y = 0
                     this.action = false
@@ -153,6 +150,7 @@ export default class Machine extends Sprite {
     }
 
     public stopSpin(result?: IResult) {
+        if (!this.action || this.result !== undefined) { return }
         this.result = result ? result : [
             [4, 4, 4],
             [4, 4, 4],
