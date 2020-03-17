@@ -13,3 +13,8 @@ export enum SlotTypes {
 	FreeSpins = 12,
 	BonusGame = 13,
 }
+
+export enum SpinType {
+	START = 1,
+	END = 2
+}
