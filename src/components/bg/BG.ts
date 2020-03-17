@@ -3,12 +3,12 @@ import { Sprite, Texture } from 'pixi.js'
 export default class BG extends Sprite {
     constructor(image: string) {
         super(Texture.from(image))
-        this.anchor.set(0.5)
+        this.anchor.set(.5)
     }
 
     resize(width: number, height: number) {
-        this.position.x = width / 2
-        this.position.y = height / 2
+        this.position.x = width * .5
+        this.position.y = height * .5
 
         this.height = height
         this.width = this.texture.width * height / this.texture.height

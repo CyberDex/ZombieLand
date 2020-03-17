@@ -1,18 +1,18 @@
 import { Sprite, Texture, Application } from 'pixi.js'
-import Button from '../../components/ui/Button'
 import { IUI } from '../../helpers/interfaces/IUI'
+import Button from '../../components/ui/Button'
 import EventsController from '../../controllers/EventsController'
+import { Events } from '../../helpers/enums/events'
 
 export default class UI extends Sprite {
     private spinButton: Button
     private config: IUI
-    private application: Application
 
     constructor(config: IUI, application: Application, ) {
         super(Texture.from(config.ui))
         this.config = config
-        this.application = application
         this.spinButton = this.addSpinButton()
+        this.spinButton.onPress(() => EventsController.instance.emit(Events.SPIN))
     }
 
     private addSpinButton() {
@@ -21,7 +21,6 @@ export default class UI extends Sprite {
         this.addChild(spinButton)
         spinButton.x = this.width
         spinButton.y = this.height
-        spinButton.onPress(() => EventsController.instance.emit('spin'))
         return spinButton
     }
 
@@ -34,7 +33,7 @@ export default class UI extends Sprite {
             this.height = this.texture.height * width / this.texture.width * .953
         }
 
-        this.position.x = (width - this.width) / 2
-        this.position.y = (height - this.height) / 1.2 + 5
+        this.position.x = (width - this.width) * .5
+        this.position.y = (height - this.height) / 1.2 + 5 //TODO: create better positioning calulation
     }
 }
