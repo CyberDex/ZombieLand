@@ -97,17 +97,10 @@ export default class Machine extends Sprite {
             this.stopAll()
             return
         }
-        this.stopReel = [
-            undefined,
-            undefined,
-            undefined,
-            undefined,
-            undefined,
-        ]
+        this.stopReel = []
         this.reels.children.forEach((reel: Container, reelNumber) => {
             const animation: TimelineMax = this.roll(reelNumber, sinSlots)
                 .eventCallback('onUpdate', () => this.updateReelOnRoll(reelNumber, animation))
-                // .eventCallback('onComplete', () => this.stopSpin(reelNumber))
                 .eventCallback('onComplete', () => this.cleanUpReel(reelNumber))
         })
     }
@@ -152,28 +145,20 @@ export default class Machine extends Sprite {
 
         if (direction > 0 && reelContainer.y + this.slotSize.h * this.config.additionalSlots + 1 > this.slotSize.h * newSlotsCount) {
             slotPosition = -newSlotsCount
-            if (this.stopReel[reelNumber] !== undefined && this.stopReel[reelNumber] === -3) {
+            if (this.stopReel[reelNumber] !== undefined && this.stopReel[reelNumber] === -1 - this.config.additionalSlots) {
                 animation.pause()
                 this.cleanUpReel(reelNumber)
                 return
             }
             reelContainer.addChildAt(this.createSlot(slotPosition, this.getSlotType(reelNumber)), 0)
-            // if (this.actions[reelNumber] <= -3) {
-            //     animation.pause()
-            //     this.cleanUpReel(reelNumber)
-            // }
         } else if (reelContainer.y < -this.slotSize.h * newSlotsCount - 1) {
             slotPosition = reelContainer.children.length
-            if (this.stopReel[reelNumber] !== undefined && this.stopReel[reelNumber] === -3) {
+            if (this.stopReel[reelNumber] !== undefined && this.stopReel[reelNumber] === -1 - this.config.additionalSlots) {
                 animation.pause()
                 this.cleanUpReel(reelNumber)
                 return
             }
             reelContainer.addChild(this.createSlot(slotPosition, this.getSlotType(reelNumber)))
-            // if (this.actions[reelNumber] <= -5) {
-            //     animation.pause()
-            //     this.cleanUpReel(reelNumber)
-            // }
         }
     }
 
