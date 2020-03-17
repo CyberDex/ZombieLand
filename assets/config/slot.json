@@ -1,4 +1,5 @@
 {
+    "APIUrl": "https://good-game.dev/api/result.php",
     "bg": "slots/bg",
     "defaultSlotsAmountPerSpin": 50,
     "reelsCount": 5,

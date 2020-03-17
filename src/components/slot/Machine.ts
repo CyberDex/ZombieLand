@@ -12,6 +12,7 @@ export default class Machine extends Sprite {
     private actions: number[] = []
     private stopReel: number[] = []
     private debug = false
+    private result: [][]
 
     constructor(config: ISlotMachine) {
         super(Texture.from(config.bg))
@@ -116,6 +117,7 @@ export default class Machine extends Sprite {
                 .eventCallback('onUpdate', () => this.updateReelOnRoll(reelNumber, animation))
                 .eventCallback('onComplete', () => this.cleanUpReel(reelNumber))
         })
+        this.getResult().then((result: [][]) => this.result = result)
     }
 
     public stop(reelNumber?: number) {
@@ -179,10 +181,11 @@ export default class Machine extends Sprite {
         let slotType
         if (this.stopReel[reelNumber] !== undefined) {
             this.stopReel[reelNumber]--
-            slotType = this.getResult()[reelNumber][this.stopReel[reelNumber] + 1]
+            slotType = this.result[reelNumber][this.stopReel[reelNumber] + 1]
         } else if (this.actions[reelNumber] <= this.config.slotsCount) {
-            slotType = this.getResult()[reelNumber][this.actions[reelNumber]]
+            slotType = this.result[reelNumber][this.actions[reelNumber]]
         }
+
         this.actions[reelNumber]--
         return slotType
     }
@@ -216,14 +219,16 @@ export default class Machine extends Sprite {
         reelContainer.y = 0
     }
 
-    private getResult(): IResult {
-        return [
-            [1, 1, 1],
-            [2, 2, 2],
-            [3, 3, 3],
-            [4, 4, 4],
-            [5, 5, 5]
-        ]
+    private getResult(): Promise<IResult> {
+        return new Promise((resolve, reject) => {
+            fetch(this.config.APIUrl, { mode: 'no-cors' })
+                .then(response => {
+                    console.log(response);
+                    return response.json()
+                })
+                .then(json => resolve(json))
+                .catch(error => reject(error))
+        })
     }
 
     private get startSlotsCount(): number {

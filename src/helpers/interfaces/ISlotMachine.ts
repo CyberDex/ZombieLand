@@ -2,6 +2,7 @@ import { IComponentConfig } from './IComponents'
 import { SlotTypes } from '../enums/slotTypes'
 
 export interface ISlotMachine extends IComponentConfig {
+    APIUrl: string
     reelsCount: number
     slotsCount: number
     additionalSlots: number
