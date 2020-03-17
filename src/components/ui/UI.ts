@@ -34,6 +34,6 @@ export default class UI extends Sprite {
         }
 
         this.position.x = (width - this.width) * .5
-        this.position.y = (height - this.height) / 1.2 + 5 //TODO: create better positioning calulation
+        this.position.y = (height - this.height) / 1.5 + 5 //TODO: create better positioning calulation
     }
 }
