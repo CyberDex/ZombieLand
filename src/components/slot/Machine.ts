@@ -98,7 +98,7 @@ export default class Machine extends Sprite {
                 onUpdate: () => {
                     if (direction > 0) {
                         const newSlotsCount = reel.children.length - this.startSlotsCount
-                        if (reel.y + this.slotSize.h + this.slotSize.h + this.slotSize.h > this.slotSize.h * newSlotsCount) {
+                        if (reel.y + this.slotSize.h * this.config.additionalSlots + 1 > this.slotSize.h * newSlotsCount) {
                             if (this.movesToStop[reelNumber] === undefined) {
                                 const slotTyle = this.randomSlot
                                 reel.addChildAt(this.createSlot(-newSlotsCount, slotTyle), 0)
@@ -110,7 +110,7 @@ export default class Machine extends Sprite {
                         }
                     } else {
                         const newSlotsCount = reel.children.length - this.startSlotsCount
-                        if (reel.y < -this.slotSize.h * newSlotsCount) {
+                        if (reel.y < -this.slotSize.h * newSlotsCount - 1) {
                             if (this.movesToStop[reelNumber] === undefined) {
                                 const slotTyle = this.randomSlot
                                 reel.addChild(this.createSlot(reel.children.length, slotTyle))
@@ -149,15 +149,19 @@ export default class Machine extends Sprite {
         })
     }
 
-    public stopSpin(result?: IResult) {
-        if (!this.action || this.result !== undefined) { return }
-        this.result = result ? result : [
+    private getResult(): IResult {
+        return [
             [4, 4, 4],
             [4, 4, 4],
             [4, 4, 4],
             [4, 4, 4],
             [4, 4, 4]
         ]
+    }
+
+    public stopSpin() {
+        if (!this.action || this.result !== undefined) { return }
+        this.result = this.getResult()
         for (let reelNumber = 0; reelNumber < this.result.length; reelNumber++) {
             const direction = reelNumber % 2 === 0 ? -1 : 1
             const reelContainer = this.reels.getChildAt(reelNumber) as Container
