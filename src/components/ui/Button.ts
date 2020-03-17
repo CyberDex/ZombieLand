@@ -11,7 +11,7 @@ export default class Button extends Sprite {
         this.active = true
         this
             .on('pointerdown', () => this.texture = Texture.from(config.pressed))
-            .on('pointerup', () => this.texture = Texture.from(config.hover))
+            .on('pointerup', () => this.texture = Texture.from(config.default))
             .on('pointerupoutside', () => this.texture = Texture.from(config.default))
             .on('pointerover', () => this.texture = Texture.from(config.hover))
             .on('pointerout', () => this.texture = Texture.from(config.default))
