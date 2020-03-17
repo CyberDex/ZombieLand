@@ -2,6 +2,7 @@ import { Sprite, Texture, Container, Graphics } from "pixi.js"
 import { ISlotMachine, IResult } from "../../helpers/interfaces/ISlotMachine";
 import { SlotTypes, SpinType } from '../../helpers/enums/slotTypes';
 import { TimelineMax, Power1 } from "gsap";
+import EventsController from "../../controllers/EventsController";
 import Slot from './Slot'
 
 export default class Machine extends Sprite {
@@ -14,6 +15,7 @@ export default class Machine extends Sprite {
         this.config = config;
         this.addChild(this.reels = this.createReels())
         this.reels.mask = this.createMask()
+        EventsController.instance.on('spin', () => this.spin(this.config.defaultSlotsAmountPerSpin))
     }
 
     private createReels() {
@@ -27,12 +29,12 @@ export default class Machine extends Sprite {
         return reels;
     }
 
-    private createReel(row: number, rollDown: boolean) {
+    private createReel(reelNumber: number, rollDown: boolean) {
         const reel = new Container()
         reel.interactive = true
         reel.buttonMode = true
-        reel.on('pointerdown', () => this.spin(this.config.defaultSlotsAmountPerSpin))
-        reel.x = row * this.slotSize.w
+        reel.on('pointerdown', () => this.stop(reelNumber))
+        reel.x = reelNumber * this.slotSize.w
         for (let slotLine = 0; slotLine < this.startSlotsCount; slotLine++) {
             const slot = this.createSlot(rollDown ? slotLine : slotLine - this.config.additionalSlots);
             reel.addChild(slot)
@@ -88,6 +90,14 @@ export default class Machine extends Sprite {
                 // .eventCallback("onComplete", () => this.stopSpin(reelNumber))
                 .eventCallback("onComplete", () => this.cleanUpReel(reelNumber))
         })
+    }
+
+    private stop(reelNumber: number) {
+        if (this.action.length > 0) {
+            this.action[reelNumber] = 3
+        } else {
+            EventsController.instance.emit('spin')
+        }
     }
 
     private roll(reelNumber: number, slotsCount: number, type?: number): TimelineMax {
