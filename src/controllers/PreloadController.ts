@@ -1,11 +1,11 @@
-import { IComponentsConfig } from "../helpers/interfaces/IComponents";
-import { Application } from 'pixi.js';
-import { Components } from '../helpers/enums/components';
+import { IComponentsConfig } from '../helpers/interfaces/IComponents'
+import { Application } from 'pixi.js'
+import { Components } from '../helpers/enums/components'
 
 export default class PreloadController {
     private application: Application
-    private assetsFolder = "assets/img/"
-    private configsFolder = "assets/config/"
+    private assetsFolder = 'assets/img/'
+    private configsFolder = 'assets/config/'
 
     constructor(application: Application) {
         this.application = application
@@ -14,7 +14,7 @@ export default class PreloadController {
     public async loadConfigs(componentsList: Components[]) {
         let loadedConfigs: IComponentsConfig = {}
         for (const component of componentsList) {
-            await this.loadConfig(this.configsFolder + component + ".json")
+            await this.loadConfig(this.configsFolder + component + '.json')
                 .then(json => loadedConfigs[component] = json)
         }
         return loadedConfigs
@@ -32,12 +32,12 @@ export default class PreloadController {
     public async loadAssets(configs: IComponentsConfig): Promise<any> {
         return new Promise(async resolve => {
             for (const config in configs) {
-                await this.loadConfig(this.assetsFolder + config + "/0.json")
+                await this.loadConfig(this.assetsFolder + config + '/0.json')
                     .then((assets: any) => {
-                        this.application.loader.add(this.assetsFolder + config + "/0.json")
+                        this.application.loader.add(this.assetsFolder + config + '/0.json')
                         assets.meta.related_multi_packs?.forEach((additionalAsset: any) => {
-                            this.application.loader.add(this.assetsFolder + config + "/" + additionalAsset)
-                        });
+                            this.application.loader.add(this.assetsFolder + config + '/' + additionalAsset)
+                        })
                     })
                     .catch(error => console.error(error))
             }

@@ -1,13 +1,13 @@
-import { Components } from '../helpers/enums/components';
-import { IComponentsList, IComponentsConfig, IComponentConfig } from '../helpers/interfaces/IComponents';
-import { ISlotMachine } from '../helpers/interfaces/ISlotMachine';
-import { Application, Container } from 'pixi.js';
-import { IUI } from '../helpers/interfaces/IUI';
-import PreloadController from "./PreloadController";
+import { Components } from '../helpers/enums/components'
+import { IComponentsList, IComponentsConfig, IComponentConfig } from '../helpers/interfaces/IComponents'
+import { ISlotMachine } from '../helpers/interfaces/ISlotMachine'
+import { Application, Container } from 'pixi.js'
+import { IUI } from '../helpers/interfaces/IUI'
+import PreloadController from './PreloadController'
 import Machine from '../components/slot/Machine'
 import Background from '../components/bg/BG'
-import Logo from "../components/bg/Logo";
-import UI from '../components/ui/UI';
+import Logo from '../components/bg/Logo'
+import UI from '../components/ui/UI'
 
 export default class ComponentController {
     private application: Application
@@ -34,19 +34,19 @@ export default class ComponentController {
                     new Background(config.bg),
                     new Logo(config.logo)
                 )
-                break;
+                break
             case Components.SLOT_MACHINE:
                 // new SlotsController(this.application, config as IUI)
                 this.application.stage.addChild(
                     new Machine(config as ISlotMachine)
                 )
-                break;
+                break
             case Components.UI:
                 this.application.stage.addChild(
                     new UI(config as IUI, this.application),
                 )
                 // new UIController(this.application, config as IUI)
-                break;
+                break
         }
     }
 }

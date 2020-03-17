@@ -1,8 +1,8 @@
-import { Sprite, Texture, Container, Graphics } from "pixi.js"
-import { ISlotMachine, IResult } from "../../helpers/interfaces/ISlotMachine";
-import { SlotTypes, SpinType } from '../../helpers/enums/slotTypes';
-import { TimelineMax, Power1 } from "gsap";
-import EventsController from "../../controllers/EventsController";
+import { Sprite, Texture, Container, Graphics } from 'pixi.js'
+import { ISlotMachine, IResult } from '../../helpers/interfaces/ISlotMachine'
+import { SlotTypes, SpinType } from '../../helpers/enums/slotTypes'
+import { TimelineMax, Power1 } from 'gsap'
+import EventsController from '../../controllers/EventsController'
 import Slot from './Slot'
 
 export default class Machine extends Sprite {
@@ -12,21 +12,21 @@ export default class Machine extends Sprite {
 
     constructor(config: ISlotMachine) {
         super(Texture.from(config.bg))
-        this.config = config;
+        this.config = config
         this.addChild(this.reels = this.createReels())
         this.reels.mask = this.createMask()
         EventsController.instance.on('spin', () => this.spin(this.config.defaultSlotsAmountPerSpin))
     }
 
     private createReels() {
-        const reels = new Container();
+        const reels = new Container()
         reels.x = this.maskSize.x
         reels.y = this.maskSize.y
         for (let reel = 0; reel < this.config.reelsCount; reel++) {
             const rollDown = reel % 2 === 0
             reels.addChild(this.createReel(reel, rollDown))
         }
-        return reels;
+        return reels
     }
 
     private createReel(reelNumber: number, rollDown: boolean) {
@@ -36,7 +36,7 @@ export default class Machine extends Sprite {
         reel.on('pointerdown', () => this.stop(reelNumber))
         reel.x = reelNumber * this.slotSize.w
         for (let slotLine = 0; slotLine < this.startSlotsCount; slotLine++) {
-            const slot = this.createSlot(rollDown ? slotLine : slotLine - this.config.additionalSlots);
+            const slot = this.createSlot(rollDown ? slotLine : slotLine - this.config.additionalSlots)
             reel.addChild(slot)
         }
         return reel
@@ -54,7 +54,7 @@ export default class Machine extends Sprite {
         return slot
     }
 
-    private get slotSize(): { w: number; h: number } {
+    private get slotSize(): { w: number, h: number } {
         const w = this.maskSize.w / this.config.reelsCount
         const h = this.maskSize.h / this.config.slotsCount
         return { w, h }
@@ -64,7 +64,7 @@ export default class Machine extends Sprite {
         return Math.floor(Math.random() * Object.keys(SlotTypes).length / 2) + 1
     }
 
-    private get maskSize(): { x: number; y: number, w: number; h: number } {
+    private get maskSize(): { x: number, y: number, w: number, h: number } {
         const maskSize = this.config.slotWindowSizePersentage
         const w = this.texture.width * (maskSize.w / 100)
         const h = this.texture.height * (maskSize.h / 100) + this.config.reelsOffsetY
@@ -74,10 +74,10 @@ export default class Machine extends Sprite {
     }
 
     private createMask(): Graphics {
-        const mask = new Graphics();
-        mask.beginFill(0x000000);
-        mask.drawRect(this.maskSize.x, this.maskSize.y, this.maskSize.w, this.maskSize.h);
-        mask.endFill();
+        const mask = new Graphics()
+        mask.beginFill(0x000000)
+        mask.drawRect(this.maskSize.x, this.maskSize.y, this.maskSize.w, this.maskSize.h)
+        mask.endFill()
         this.addChild(mask)
         return mask
     }
@@ -86,9 +86,9 @@ export default class Machine extends Sprite {
         if (this.action.length > 0) { return }
         this.reels.children.forEach((reel: Container, reelNumber) => {
             this.roll(reelNumber, sinSlots)
-                .eventCallback("onUpdate", () => this.updateReelOnRoll(reelNumber))
-                // .eventCallback("onComplete", () => this.stopSpin(reelNumber))
-                .eventCallback("onComplete", () => this.cleanUpReel(reelNumber))
+                .eventCallback('onUpdate', () => this.updateReelOnRoll(reelNumber))
+                // .eventCallback('onComplete', () => this.stopSpin(reelNumber))
+                .eventCallback('onComplete', () => this.cleanUpReel(reelNumber))
         })
     }
 
@@ -108,7 +108,7 @@ export default class Machine extends Sprite {
         if (direction < 0) {
             newPosition = this.slotSize.h * (slotsCount + this.config.slotsCount) * direction
         }
-        const reelMovement = new TimelineMax();
+        const reelMovement = new TimelineMax()
         const rollConfig: gsap.TweenVars = {
             delay: reelNumber * this.config.reelDelay,
             y: newPosition,
@@ -165,7 +165,7 @@ export default class Machine extends Sprite {
             slot.y = direction < 0
                 ? this.slotSize.h * number + this.config.reelsOffsetX * -1
                 : (this.slotSize.h * number - this.slotSize.h * this.config.additionalSlots) + this.config.reelsOffsetX * -1
-        });
+        })
         this.action = []
         reelContainer.y = 0
     }

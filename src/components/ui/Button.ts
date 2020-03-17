@@ -1,5 +1,5 @@
-import { Sprite, Texture } from "pixi.js"
-import { IButtonConfig } from "../../helpers/interfaces/IUI";
+import { Sprite, Texture } from 'pixi.js'
+import { IButtonConfig } from '../../helpers/interfaces/IUI'
 
 export default class Button extends Sprite {
     private activness = false
@@ -22,7 +22,7 @@ export default class Button extends Sprite {
     }
 
     public set active(active: boolean) {
-        if (this.activness === active) { return; }
+        if (this.activness === active) { return }
         this.activness = active
         this.interactive = active
         this.buttonMode = active

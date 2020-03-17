@@ -1,7 +1,7 @@
 import { Sprite, Texture, Application } from 'pixi.js'
 import Button from '../../components/ui/Button'
 import { IUI } from '../../helpers/interfaces/IUI'
-import EventsController from "../../controllers/EventsController";
+import EventsController from '../../controllers/EventsController'
 
 export default class UI extends Sprite {
     private spinButton: Button

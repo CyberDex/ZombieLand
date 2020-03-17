@@ -1,4 +1,4 @@
-import { IComponentConfig } from './IComponents';
+import { IComponentConfig } from './IComponents'
 
 export interface IUI extends IComponentConfig {
     buttons: {

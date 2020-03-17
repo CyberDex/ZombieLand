@@ -1,4 +1,4 @@
-import { Sprite, Texture } from "pixi.js"
+import { Sprite, Texture } from 'pixi.js'
 
 export default class BG extends Sprite {
     constructor(image: string) {
