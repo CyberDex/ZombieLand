@@ -11,7 +11,7 @@ export default class Machine extends Sprite {
     private reels: Container
     private actions: number[] = []
     private stopReel: number[] = []
-    private debug = true
+    private debug = false
 
     constructor(config: ISlotMachine) {
         super(Texture.from(config.bg))
@@ -40,7 +40,8 @@ export default class Machine extends Sprite {
     private createReel(reelNumber: number, rollDown: boolean) {
         const reel = new Container()
         reel.interactive = true
-        reel.buttonMode = true
+        reel.on('pointerdown', () => this.stopReel[reelNumber] = 2)
+
         reel.x = reelNumber * this.slotSize.w
         for (let slotLine = 0; slotLine < this.startSlotsCount; slotLine++) {
             reel.addChild(
@@ -59,7 +60,6 @@ export default class Machine extends Sprite {
             h: this.slotSize.h,
             parameters: this.config.slots
         })
-        // slot.on('pointerdown', (event: any) => this.stop(reelNumber))
         return slot
 
     }
@@ -196,7 +196,10 @@ export default class Machine extends Sprite {
                 ? this.slotSize.h * number + this.config.reelsOffsetX * -1
                 : (this.slotSize.h * number - this.slotSize.h * this.config.additionalSlots) + this.config.reelsOffsetX * -1
         })
-        this.actions = []
+        this.actions[reelNumber] = 0
+        if (this.actions.reduce((a, b) => a + b) <= 0) {
+            this.actions = []
+        }
         reelContainer.y = 0
     }
 
