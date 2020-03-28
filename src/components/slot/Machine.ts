@@ -60,7 +60,7 @@ export default class Machine extends Sprite {
         button.endFill()
         button.alpha = 0
         button.interactive = true
-        button.on('pointerdown', () => callback())
+        button.on('pointerdown', callback)
         this.addChild(button)
     }
 
