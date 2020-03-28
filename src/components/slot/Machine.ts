@@ -4,6 +4,7 @@ import { SlotTypes, SpinType } from '../../helpers/enums/slotTypes'
 import { TimelineMax, Power1 } from 'gsap'
 import Slot from './Slot'
 import { store } from '../../redux/store'
+import { stopSpin } from '../../redux/actions';
 
 export default class Machine extends Sprite {
     private config: ISlotMachine
@@ -111,16 +112,16 @@ export default class Machine extends Sprite {
     public spin(sinSlots: number) {
         if (this.actions.length > 0) { return }
         this.stopReel = []
+        let activeReels = this.config.reelsCount
         this.reels.children.forEach((reel: Container, reelNumber) => {
             const animation: TimelineMax = this.roll(reelNumber, sinSlots)
                 .eventCallback('onUpdate', () => this.updateReelOnRoll(reelNumber, animation))
-                .eventCallback('onComplete', () => this.cleanUpReel(reelNumber))
+                .eventCallback('onComplete', () => {
+                    this.cleanUpReel(reelNumber);
+                    activeReels--
+                    activeReels === 0 && store.dispatch(stopSpin())
+                })
         })
-    }
-
-    public stop(reelNumber?: number) {
-        if (this.actions.length <= 0) { return }
-        console.log(`STOP`, reelNumber);
     }
 
     public stopAll() {
