@@ -2,9 +2,8 @@ import { Sprite, Texture, Container, Graphics } from 'pixi.js'
 import { ISlotMachine, IResult } from '../../helpers/interfaces/ISlotMachine'
 import { SlotTypes, SpinType } from '../../helpers/enums/slotTypes'
 import { TimelineMax, Power1 } from 'gsap'
-import { Events } from '../../helpers/enums/events'
-import EventsController from '../../controllers/EventsController'
 import Slot from './Slot'
+import { store } from '../../redux/store'
 
 export default class Machine extends Sprite {
     private config: ISlotMachine
@@ -21,7 +20,11 @@ export default class Machine extends Sprite {
             this.reels.mask = this.createMask()
         }
         this.addChild(this.reels)
-        EventsController.instance.on(Events.SPIN, () => this.spin(this.config.defaultSlotsAmountPerSpin))
+        store.subscribe(() =>
+            store.getState().spin
+                ? this.spin(this.config.defaultSlotsAmountPerSpin)
+                : this.stopAll()
+        )
     }
 
     private createReels() {
@@ -106,10 +109,7 @@ export default class Machine extends Sprite {
     }
 
     public spin(sinSlots: number) {
-        if (this.actions.length > 0) {
-            this.stopAll()
-            return
-        }
+        if (this.actions.length > 0) { return }
         this.stopReel = []
         this.reels.children.forEach((reel: Container, reelNumber) => {
             const animation: TimelineMax = this.roll(reelNumber, sinSlots)
