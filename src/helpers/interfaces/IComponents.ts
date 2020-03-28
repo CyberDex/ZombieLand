@@ -8,7 +8,3 @@ export interface IComponentsConfig {
 export interface IComponentConfig {
     [key: string]: any
 }
-
-export interface IComponentsList {
-    [key: string]: Container
-}
