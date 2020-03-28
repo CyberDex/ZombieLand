@@ -11,7 +11,7 @@ export default class Machine extends Sprite {
     private actions: number[] = []
     private stopReel: number[] = []
     private debug = false
-    private result: [][]
+    private result: any
 
     constructor(config: ISlotMachine) {
         super(Texture.from(config.bg))
@@ -220,15 +220,31 @@ export default class Machine extends Sprite {
     }
 
     private getResult(): Promise<IResult> {
+        // return fetch(this.config.APIUrl, {
+        //     method: 'POST',
+        //     headers: {
+        //         'Access-Control-Allow-Origin': '*',
+        //         'Accept': 'application/json',
+        //         'Content-Type': 'application/json',
+        //         mode: 'cors'
+        //     },
+        //     mode: 'cors'
+        // })
+        //     .then(response => response.json())
+        //     .then(result => this.result = result)
+
         return new Promise((resolve, reject) => {
-            fetch(this.config.APIUrl, { mode: 'no-cors' })
-                .then(response => {
-                    console.log(response);
-                    return response.json()
-                })
-                .then(json => resolve(json))
-                .catch(error => reject(error))
+            setTimeout(() => {
+                this.result = [
+                    [1, 1, 1],
+                    [2, 2, 2],
+                    [3, 3, 3],
+                    [4, 4, 4],
+                    [5, 5, 5]
+                ]
+            }, 2000);
         })
+
     }
 
     private get startSlotsCount(): number {

@@ -1,5 +1,5 @@
 {
-    "APIUrl": "https://good-game.dev/api/result.php",
+    "APIUrl": "https://good-game.dev/api/zombie.json",
     "bg": "slots/bg",
     "defaultSlotsAmountPerSpin": 50,
     "reelsCount": 5,
