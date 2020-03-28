@@ -8,6 +8,7 @@ import Machine from '../components/slot/Machine'
 import Background from '../components/bg/BG'
 import Logo from '../components/bg/Logo'
 import UI from '../components/ui/UI'
+import ResultController from './resultController'
 
 export default class ComponentController {
     private application: Application
@@ -35,6 +36,7 @@ export default class ComponentController {
                 )
                 break
             case Components.SLOT_MACHINE:
+                new ResultController(config as ISlotMachine)
                 this.application.stage.addChild(
                     new Machine(config as ISlotMachine)
                 )

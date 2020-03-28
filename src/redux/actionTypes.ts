@@ -1,4 +1,6 @@
 export enum Actions {
     SPIN_START = 'SPIN_START',
-    SPIN_STOP = 'SPIN_STOP'
+    SPIN_STOP = 'SPIN_STOP',
+    LOAD_RESULT = 'LOAD_RESULT',
+    RESULT_LOADED = 'LOAD_RESULT'
 }

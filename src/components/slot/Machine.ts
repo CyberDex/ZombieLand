@@ -1,9 +1,9 @@
 import { Sprite, Texture, Container, Graphics } from 'pixi.js'
-import { ISlotMachine, IResult } from '../../helpers/interfaces/ISlotMachine'
+import { ISlotMachine, IResult } from '../../helpers/interfaces/ISlotMachine';
 import { SlotTypes, SpinType } from '../../helpers/enums/slotTypes'
 import { TimelineMax, Power1 } from 'gsap'
 import Slot from './Slot'
-import { store } from '../../redux/store'
+import { store } from '../../redux/store';
 import { stopSpin } from '../../redux/actions';
 
 export default class Machine extends Sprite {
@@ -126,7 +126,7 @@ export default class Machine extends Sprite {
 
     public stopAll() {
         if (this.actions.length <= 0) { return }
-        this.stopReel = [2, 2, 2, 2, 2]
+        this.stopReel = [5, 10, 15, 20, 25]
     }
 
     private roll(reelNumber: number, slotsCount: number, type?: number): TimelineMax {
@@ -178,11 +178,12 @@ export default class Machine extends Sprite {
 
     private getSlotType(reelNumber: number) {
         let slotType
+        const result: IResult = store.getState().result as IResult;
         if (this.stopReel[reelNumber] !== undefined) {
             this.stopReel[reelNumber]--
-            slotType = this.getResult()[reelNumber][this.stopReel[reelNumber] + 1]
+            slotType = result[reelNumber][this.stopReel[reelNumber] + 1]
         } else if (this.actions[reelNumber] <= this.config.slotsCount) {
-            slotType = this.getResult()[reelNumber][this.actions[reelNumber]]
+            slotType = result[reelNumber][this.actions[reelNumber]]
         }
         this.actions[reelNumber]--
         return slotType
@@ -215,16 +216,6 @@ export default class Machine extends Sprite {
             this.actions = []
         }
         reelContainer.y = 0
-    }
-
-    private getResult(): IResult {
-        return [
-            [1, 1, 1],
-            [2, 2, 2],
-            [3, 3, 3],
-            [4, 4, 4],
-            [5, 5, 5]
-        ]
     }
 
     private get startSlotsCount(): number {
