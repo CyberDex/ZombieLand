@@ -35,7 +35,7 @@ export default class Machine extends Sprite {
         reels.x = this.maskSize.x
         reels.y = this.maskSize.y
         for (let reelNumber = 0; reelNumber < this.config.reelsCount; reelNumber++) {
-            this.makeButton(reelNumber, () => this.stopReel[reelNumber] = 2)
+            this.makeButton(reelNumber, () => store.getState().result && (this.stopReel[reelNumber] = 2))
             const rollDown = reelNumber % 2 === 0
             reels.addChild(
                 this.createReel(reelNumber, rollDown)
