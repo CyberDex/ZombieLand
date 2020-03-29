@@ -1,6 +1,7 @@
 import { IResult, ISlotMachine } from '../helpers/interfaces/ISlotMachine';
 import { store } from '../redux/store';
 import { Actions } from '../redux/actionTypes';
+import { resultLoaded } from '../redux/actions';
 
 export default class ResultController {
     private config: ISlotMachine
@@ -8,17 +9,21 @@ export default class ResultController {
     constructor(config: ISlotMachine) {
         this.config = config
         store.subscribe(() => {
-            store.getState().result === undefined && this.getResult()
+            const state = store.getState()
+            state.spin && state.result === undefined && this.getResult()
         })
     }
 
     private getResult() {
-        let result: IResult = [[], [], []];
+        let result: IResult = []
         for (let reel = 0; reel < this.config.reelsCount; reel++) {
+            const reel = []
             for (let slot = 0; slot < this.config.slotsCount; slot++) {
-                result[reel][slot] = Math.floor(Math.random() * (13 - 1) + 1);
+                const slot = Math.floor(Math.random() * (13 - 1) + 1)
+                reel.push(slot)
             }
+            result.push(reel)
         }
-        store.dispatch({ type: Actions.RESULT_LOADED, result: result })
+        store.dispatch(resultLoaded(result))
     }
 }

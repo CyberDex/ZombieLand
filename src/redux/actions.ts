@@ -1,27 +1,23 @@
 import { Actions } from '../redux/actionTypes';
 import { IResult } from '../helpers/interfaces/ISlotMachine';
+import { IAction } from '../helpers/interfaces/IAppState';
 
-export function startSpin() {
+export function startSpin(): IAction {
     return {
-        type: Actions.SPIN_START
+        type: Actions.SPIN_START,
+        result: undefined
     }
 }
 
-export function stopSpin() {
+export function stopSpin(): IAction {
     return {
         type: Actions.SPIN_STOP
     }
 }
 
-export function loadResult() {
+export function resultLoaded(result: IResult): IAction {
     return {
-        type: Actions.LOAD_RESULT
-    }
-}
-
-export function resultLoaded(result: IResult) {
-    return {
-        type: Actions.LOAD_RESULT,
+        type: Actions.RESULT_LOADED,
         result: result
     }
 }
