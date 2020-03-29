@@ -21,11 +21,13 @@ export default class Machine extends Sprite {
             this.reels.mask = this.createMask()
         }
         this.addChild(this.reels)
-        store.subscribe(() =>
-            store.getState().spin
-                ? this.spin(this.config.defaultSlotsAmountPerSpin)
-                : this.stopAll()
-        )
+        store.subscribe(() => this.onStateChange())
+    }
+
+    private onStateChange() {
+        const state = store.getState()
+        state.spin && this.spin(this.config.defaultSlotsAmountPerSpin)
+        state.result !== undefined && this.stopAll()
     }
 
     private createReels() {
@@ -126,14 +128,16 @@ export default class Machine extends Sprite {
 
     public stopAll() {
         if (this.actions.length <= 0) { return }
-        this.stopReel = [5, 10, 15, 20, 25]
+        for (let reel = 0; reel < this.config.reelsCount; reel++) {
+            this.stopReel.push((this.config.slotsCount + this.config.additionalSlots) * reel)
+        }
     }
 
     private roll(reelNumber: number, slotsCount: number, type?: number): TimelineMax {
         this.actions[reelNumber] = slotsCount
         const direction = reelNumber % 2 === 0 ? -1 : 1
         const reelContainer = this.reels.getChildAt(reelNumber) as Container
-        let newPosition = this.slotSize.h * (slotsCount) * direction
+        let newPosition = this.slotSize.h * slotsCount * direction
         if (direction < 0) {
             newPosition = this.slotSize.h * (slotsCount + this.config.slotsCount) * direction
         }
@@ -141,7 +145,7 @@ export default class Machine extends Sprite {
         const rollConfig: gsap.TweenVars = {
             delay: reelNumber * this.config.reelDelay,
             y: newPosition,
-            duration: this.config.spinTime
+            duration: this.config.spinTillError
         }
         type === SpinType.START
             ? rollConfig.ease = Power1.easeIn
@@ -216,6 +220,7 @@ export default class Machine extends Sprite {
             this.actions = []
         }
         reelContainer.y = 0
+        this.actions.length === 0 && store.dispatch(stopSpin())
     }
 
     private get startSlotsCount(): number {

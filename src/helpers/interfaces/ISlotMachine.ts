@@ -6,7 +6,7 @@ export interface ISlotMachine extends IComponentConfig {
     slotsCount: number
     additionalSlots: number
     defaultSlotsAmountPerSpin: number
-    spinTime: number
+    spinTillError: number
     reelDelay: number
     reelsOffsetX: number,
     reelsOffsetY: number,

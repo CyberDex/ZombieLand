@@ -11,18 +11,18 @@ export function mainReducer(state: IAppState = initialState, action: IAction) {
         case Actions.SPIN_START:
             return {
                 ...state,
-                spin: true,
-                result: undefined
-            }
-        case Actions.SPIN_STOP:
-            return {
-                ...state,
-                spin: false
+                spin: action.spin,
+                result: action.result
             }
         case Actions.RESULT_LOADED:
             return {
                 ...state,
                 result: action.result
+            }
+        case Actions.SPIN_STOP:
+            return {
+                ...state,
+                spin: action.spin
             }
         default:
             return state

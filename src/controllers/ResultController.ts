@@ -24,6 +24,8 @@ export default class ResultController {
             }
             result.push(reel)
         }
-        store.dispatch(resultLoaded(result))
+        setTimeout(() =>
+            store.dispatch(resultLoaded(result))
+            , 5000)
     }
 }
