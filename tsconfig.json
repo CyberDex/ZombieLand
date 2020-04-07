@@ -1,17 +1,13 @@
 {
     "compilerOptions": {
-        "outDir": "./dist/",
+        "target": "ES6",
+        "module": "commonjs",
         "sourceMap": true,
-        "noImplicitAny": true,
-        "target": "ES2016",
-        "module": "CommonJS",
-        "jsx": "react",
-        "allowJs": true,
-        "types": [
-            "pixi.js"
-        ]
+        "noImplicitAny": false,
+        "strict": false,
+        "resolveJsonModule": true
     },
     "include": [
-        "./src/**/*"
+        "src/**/*"
     ]
 }
