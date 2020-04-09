@@ -1,4 +1,4 @@
-# ZombieLand
+# Zombie Land Slot
 
 [Play game](https://cyberdex.github.io/games/ZombieLand/ "Play game")
 
@@ -27,4 +27,9 @@ Run on https://localhost:8080
 
 ```
 npm start
+```
+
+Development build:
+```
+npm run build
 ```
