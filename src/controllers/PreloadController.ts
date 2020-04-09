@@ -4,8 +4,8 @@ import { Components } from '../helpers/enums/components'
 
 export default class PreloadController {
     private application: Application
-    private assetsFolder = 'assets/img/'
-    private configsFolder = 'assets/config/'
+    private assetsFolder = 'img/'
+    private configsFolder = 'config/'
 
     constructor(application: Application) {
         this.application = application
