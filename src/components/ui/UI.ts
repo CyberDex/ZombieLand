@@ -1,8 +1,8 @@
 import { Sprite, Texture, Application } from 'pixi.js'
 import { IUI } from '../../helpers/interfaces/IUI'
 import Button from '../../components/ui/Button'
-import EventsController from '../../controllers/EventsController'
-import { Events } from '../../helpers/enums/events'
+import { store } from '../../redux/store';
+import { startSpin, stopSpin } from '../../redux/actions';
 
 export default class UI extends Sprite {
     private spinButton: Button
@@ -12,7 +12,11 @@ export default class UI extends Sprite {
         super(Texture.from(config.ui))
         this.config = config
         this.spinButton = this.addSpinButton()
-        this.spinButton.onPress(() => EventsController.instance.emit(Events.SPIN))
+        this.spinButton.onPress(() =>
+            store.getState().spin
+                ? store.dispatch(stopSpin())
+                : store.dispatch(startSpin())
+        )
     }
 
     private addSpinButton() {

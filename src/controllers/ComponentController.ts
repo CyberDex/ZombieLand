@@ -1,5 +1,5 @@
 import { Components } from '../helpers/enums/components'
-import { IComponentsList, IComponentsConfig, IComponentConfig } from '../helpers/interfaces/IComponents'
+import { IComponentsConfig, IComponentConfig } from '../helpers/interfaces/IComponents'
 import { ISlotMachine } from '../helpers/interfaces/ISlotMachine'
 import { Application, Container } from 'pixi.js'
 import { IUI } from '../helpers/interfaces/IUI'
@@ -11,7 +11,6 @@ import UI from '../components/ui/UI'
 
 export default class ComponentController {
     private application: Application
-    private components: IComponentsList
     private preloader: PreloadController
 
     constructor(application: Application) {
@@ -36,7 +35,6 @@ export default class ComponentController {
                 )
                 break
             case Components.SLOT_MACHINE:
-                // new SlotsController(this.application, config as IUI)
                 this.application.stage.addChild(
                     new Machine(config as ISlotMachine)
                 )
@@ -45,7 +43,6 @@ export default class ComponentController {
                 this.application.stage.addChild(
                     new UI(config as IUI, this.application),
                 )
-                // new UIController(this.application, config as IUI)
                 break
         }
     }
