@@ -29,7 +29,7 @@ export default class PreloadController {
         })
     }
 
-    public async loadAssets(configs: IComponentsConfig): Promise<any> {
+    public async loadAssets(configs: IComponentsConfig): Promise<void> {
         return new Promise(async resolve => {
             for (const config in configs) {
                 await this.loadConfig(this.assetsFolder + config + '/0.json')
